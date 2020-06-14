@@ -1,13 +1,9 @@
 $fn=36;
-
 $sl = 7; //schraubenlänge gesamt
 $sk = 1.5; //schraube kopfdicke
 $pd = 1.5; //plattinendicke
 $ledh = 7 - $pd; //led höhe
-echo ("ledh: ", $ledh);
-
 $lsqa = 45; //breite und höhe led leucht fläche
-
 //50*70.2 //platinenmaße
 $pb = 50;
 $ph = 70.2;
@@ -34,7 +30,11 @@ $loetd = 4; //doch lieber einkalkulieren, mit der 9v batterie könnte es dann do
 $mra = 1.4; //minimaler rand (links von vorne)
 $schalter = 13; //höhe und breite schalter
 $ast = $schalter + 2 - $lstd/2; //abstand stecker + switch, da switch 13 (mit toleranz 15)
+$9vb=26.4; //wiki 26.2
+$9vd=17.2; //wiki 17
+$9vh=44; //wiki 48.5 aber wir wollen ja, dass er oben raussteht
 
+echo ("ledh: ", $ledh);
 echo ("agesamt: ", $agesamt);
 echo ("x2: ", $x2);
 echo ("ad: ", $ad);
@@ -205,6 +205,65 @@ module platinenersatz()
     cube([$ax,$pd+$depth, $ph]); //das muss bis hinter, sonst muss ich support drucken
 }
 
+module platinenhalter_h()
+{
+    cube([$rb+$ld+($mr-$ld)/2-$mr/2,$depth,$rh+$ld+($mr-$ld)/2]);
+}
+
+module platinehalter_v()
+{
+    cube([$rb+$ld+($mr-$ld)/2,$depth,$rh+$ld+($mr-$ld)/2-$mr/2]);
+}
+
+module platinenhalterzumrand()
+{
+    //platinenhalter zum rand
+    //h ru (von vorne, non hinten lu)
+    
+    translate([$ax,$pd,0])
+    platinenhalter_h();
+    
+    translate([$ax,$pd,0])
+    platinehalter_v();
+    
+    translate([$ax,$pd,$ph-($rh+$ld+($mr-$ld)/2)])
+    platinenhalter_h();
+    
+    translate([$ax,$pd,$ph-($rh+$ld+($mr-$ld)/2-$mr/2)])
+    cube([$rb+$ld+($mr-$ld)/2,$depth,$rh+$ld+($mr-$ld)/2-$mr/2]);
+    
+    translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2-$mr/2),$pd,0])
+    platinenhalter_h();
+    
+    translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2),$pd,0])
+    platinehalter_v();
+    
+    translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2-$mr/2),$pd,$ph-($rh+$ld+($mr-$ld)/2)])
+    platinehalter_v();
+    
+    translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2),$pd,$ph-($rh+$ld+($mr-$ld)/2-$mr/2)])
+    platinehalter_v();
+}
+
+module batterie()
+{
+    //9v batterie (oben muss er durchstoßen, aber hinten nehmen wir einfach die Wand die eh schon da ist)
+    
+    color("#973512")
+    translate([(($ax+$pb)-$9vb)/2,$pd+$depth-$9vd,($ph-$9vh)+$t])
+    cube([$9vb,$9vd,$9vh]);
+}
+
+module batteriefach()
+{
+    //9v batteriefach
+    $9vbs=$9vb+$t*2;
+    $9vds=$9vd+$t;
+    $9vhs=$9vh+$t;
+    color("#351297")
+    translate([(($ax+$pb)-$9vbs)/2,$pd+$depth-$9vds,($ph-$9vhs)+$t])
+    cube([$9vbs,$9vds,$9vhs]);
+}
 ////////////////////
 //Render
 ////////////////////
@@ -218,51 +277,8 @@ rueckwand();
 
 platinenersatz();
 
-//platinenhalter zum rand
 color("#AAAAFF")
-translate([$ax,$pd,0])
-cube([$rb+$ld+($mr-$ld)/2-$mr/2,$depth,$rh+$ld+($mr-$ld)/2]);
+platinenhalterzumrand();
 
-color("#AAAAFF")
-translate([$ax,$pd,0])
-cube([$rb+$ld+($mr-$ld)/2,$depth,$rh+$ld+($mr-$ld)/2-$mr/2]);
-
-color("#AAAAFF")
-translate([$ax,$pd,$ph-($rh+$ld+($mr-$ld)/2)])
-cube([$rb+$ld+($mr-$ld)/2-$mr/2,$depth,$rh+$ld+($mr-$ld)/2]);
-
-color("#AAAAFF")
-translate([$ax,$pd,$ph-($rh+$ld+($mr-$ld)/2-$mr/2)])
-cube([$rb+$ld+($mr-$ld)/2,$depth,$rh+$ld+($mr-$ld)/2-$mr/2]);
-
-color("#AAAAFF")
-translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2-$mr/2),$pd,0])
-cube([$rb+$ld+($mr-$ld)/2-$mr/2,$depth,$rh+$ld+($mr-$ld)/2]);
-
-color("#AAAAFF")
-translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2),$pd,0])
-cube([$rb+$ld+($mr-$ld)/2,$depth,$rh+$ld+($mr-$ld)/2-$mr/2]);
-
-color("#AAAAFF")
-translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2-$mr/2),$pd,$ph-($rh+$ld+($mr-$ld)/2)])
-cube([$rb+$ld+($mr-$ld)/2-$mr/2,$depth,$rh+$ld+($mr-$ld)/2]);
-
-color("#AAAAFF")
-translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2),$pd,$ph-($rh+$ld+($mr-$ld)/2-$mr/2)])
-cube([$rb+$ld+($mr-$ld)/2,$depth,$rh+$ld+($mr-$ld)/2-$mr/2]);
-
-//9v batterie (oben muss er durchstoßen, aber hinten nehmen wir einfach die Wand die eh schon da ist)
-$9vb=26.4; //wiki 26.2
-$9vd=17.2; //wiki 17
-$9vh=44; //wiki 48.5 aber wir wollen ja, dass er oben raussteht
-color("#973512")
-translate([(($ax+$pb)-$9vb)/2,$pd+$depth-$9vd,($ph-$9vh)+$t])
-cube([$9vb,$9vd,$9vh]);
-
-//9v batteriefach
-$9vbs=$9vb+$t*2;
-$9vds=$9vd+$t;
-$9vhs=$9vh+$t;
-color("#351297")
-translate([(($ax+$pb)-$9vbs)/2,$pd+$depth-$9vds,($ph-$9vhs)+$t])
-cube([$9vbs,$9vds,$9vhs]);
+batterie();
+batteriefach();
