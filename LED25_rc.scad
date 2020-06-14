@@ -33,6 +33,10 @@ $ast = $schalter + 2 - $lstd/2; //abstand stecker + switch, da switch 13 (mit to
 $9vb=26.4; //wiki 26.2
 $9vd=17.2; //wiki 17
 $9vh=44; //wiki 48.5 aber wir wollen ja, dass er oben raussteht
+//9v batteriefach
+$9vbs=$9vb+$t*2;
+$9vds=$9vd+$t;
+$9vhs=$9vh+$t;
 
 echo ("ledh: ", $ledh);
 echo ("agesamt: ", $agesamt);
@@ -160,8 +164,6 @@ module waende()
         color("#FF4444")
         translate([-$t,$pd,-$t])
         cube([$t+$pb+$ax+$t,$depth,$t]);
-        
-        
     }
 }
 
@@ -264,10 +266,6 @@ module batterie()
 
 module batteriefach()
 {
-    //9v batteriefach
-    $9vbs=$9vb+$t*2;
-    $9vds=$9vd+$t;
-    $9vhs=$9vh+$t;
     color("#351297")
     translate([(($ax+$pb)-$9vbs)/2,$pd+$depth-$9vds,($ph-$9vhs)+$t])
     cube([$9vbs,$9vds,$9vhs]);
@@ -297,15 +295,26 @@ module gehause()
     platinenhalterzumrand();
 }
 
+module oberteil2()
+{
+    translate([-$t,-$ledh,$ph])
+    cube([$t+$pb+$ax+$t,$pd+$ledh+$depth-$9vds,$t]);
+}
+
 module oberteilmitbatteriefach()
 {
     batterieholder();
-    oberteil();
+    difference()
+    {
+        oberteil();
+        oberteil2();
+    }
 }
 
 ////////////////////
 //Render
 ////////////////////
 
-//gehause();
-oberteilmitbatteriefach();
+gehause();
+//oberteilmitbatteriefach();
+//oberteil2();
