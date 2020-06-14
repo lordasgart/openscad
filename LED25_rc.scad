@@ -156,20 +156,25 @@ module waende()
         translate([-$t,-$ledh,-$t])
         cube([$t+$pb+$ax+$t,$pd+$ledh,$t]);
 
-        //oben
-        color("#FF0000")
-        translate([-$t,-$ledh,$ph])
-        cube([$t+$pb+$ax+$t,$pd+$ledh,$t]);
-
         //unten
         color("#FF4444")
         translate([-$t,$pd,-$t])
         cube([$t+$pb+$ax+$t,$depth,$t]);
-
-        //oben
-        color("#FF4444")
-        translate([-$t,$pd,$ph])
-        cube([$t+$pb+$ax+$t,$depth,$t]);
+        
+        difference()
+        {
+            //oben gehäuse
+            color("#FF4444")
+            translate([-$t,$pd,$ph])
+            cube([$t+$pb+$ax+$t,$depth,$t]);
+            
+            batterie();
+        }
+        
+        //oben blende
+        color("#FF0000")
+        translate([-$t,-$ledh,$ph])
+        cube([$t+$pb+$ax+$t,$pd+$ledh,$t]);
     }
 }
 
@@ -280,5 +285,8 @@ platinenersatz();
 color("#AAAAFF")
 platinenhalterzumrand();
 
-batterie();
-batteriefach();
+difference()
+{
+    batteriefach();
+    batterie();
+}
