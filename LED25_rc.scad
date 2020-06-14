@@ -161,21 +161,26 @@ module waende()
         translate([-$t,$pd,-$t])
         cube([$t+$pb+$ax+$t,$depth,$t]);
         
-        difference()
-        {
-            //oben gehäuse
-            color("#FF4444")
-            translate([-$t,$pd,$ph])
-            cube([$t+$pb+$ax+$t,$depth,$t]);
-            
-            batterie();
-        }
         
-        //oben blende
-        color("#FF0000")
-        translate([-$t,-$ledh,$ph])
-        cube([$t+$pb+$ax+$t,$pd+$ledh,$t]);
     }
+}
+
+module oberteil()
+{
+    difference()
+    {
+        //oben gehäuse
+        color("#FF4444")
+        translate([-$t,$pd,$ph])
+        cube([$t+$pb+$ax+$t,$depth,$t]);
+        
+        batterie();
+    }
+    
+    //oben blende
+    color("#FF0000")
+    translate([-$t,-$ledh,$ph])
+    cube([$t+$pb+$ax+$t,$pd+$ledh,$t]);
 }
 
 module rueckwand()
@@ -223,29 +228,27 @@ module platinehalter_v()
 module platinenhalterzumrand()
 {
     //platinenhalter zum rand
-    //h ru (von vorne, non hinten lu)
-    
+    //ru (von vorne, von hinten lu) 
     translate([$ax,$pd,0])
     platinenhalter_h();
-    
     translate([$ax,$pd,0])
     platinehalter_v();
     
+    //ro
     translate([$ax,$pd,$ph-($rh+$ld+($mr-$ld)/2)])
     platinenhalter_h();
-    
     translate([$ax,$pd,$ph-($rh+$ld+($mr-$ld)/2-$mr/2)])
-    cube([$rb+$ld+($mr-$ld)/2,$depth,$rh+$ld+($mr-$ld)/2-$mr/2]);
+    platinehalter_v();
     
+    //lu
     translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2-$mr/2),$pd,0])
     platinenhalter_h();
-    
     translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2),$pd,0])
     platinehalter_v();
-    
+   
+    //lo
     translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2-$mr/2),$pd,$ph-($rh+$ld+($mr-$ld)/2)])
     platinehalter_v();
-    
     translate([($ax+$pb)-($rb+$ld+($mr-$ld)/2),$pd,$ph-($rh+$ld+($mr-$ld)/2-$mr/2)])
     platinehalter_v();
 }
@@ -269,24 +272,40 @@ module batteriefach()
     translate([(($ax+$pb)-$9vbs)/2,$pd+$depth-$9vds,($ph-$9vhs)+$t])
     cube([$9vbs,$9vds,$9vhs]);
 }
+
+module batterieholder()
+{
+    difference()
+    {
+        batteriefach();
+        batterie();
+    }
+}
+
+module gehause()
+{
+    translate([$ax,0,0])
+    platinenzentrum();
+
+    waende();
+
+    rueckwand();
+
+    platinenersatz();
+
+    color("#AAAAFF")
+    platinenhalterzumrand();
+}
+
+module oberteilmitbatteriefach()
+{
+    batterieholder();
+    oberteil();
+}
+
 ////////////////////
 //Render
 ////////////////////
 
-translate([$ax,0,0])
-platinenzentrum();
-
-waende();
-
-rueckwand();
-
-platinenersatz();
-
-color("#AAAAFF")
-platinenhalterzumrand();
-
-difference()
-{
-    batteriefach();
-    batterie();
-}
+//gehause();
+oberteilmitbatteriefach();
