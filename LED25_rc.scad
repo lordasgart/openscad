@@ -21,7 +21,7 @@ $lr2lrb = 48.4;
 $rb = ($pb-$lr2lrb)/2; //rand breite (lochabstand)
 $rh = ($ph-$lr2lrh)/2; //rand breite (lochabstand)
 $ld = 2.2; //loch durchmesser schrauben von platine
-$lds = 1.7; //schraube selbst durchmesser
+$lds = 1.4; //schraube selbst durchmesser 1.7 dünne gewindestelle 1.4
 $mr = 2.8; //maximaler Radius von zentrum platinenloch bis zur nähesten lötstelle
 $lswd = 5.8; //durchmesser switch loch
 $lstd = 7.8; //durchmesser stecker loch
@@ -82,7 +82,10 @@ module platine()
             platinenloch();
         }
     }
-    
+}
+
+module schraubenloecher()
+{
     loecher()
     {
         color("gray")
@@ -109,7 +112,7 @@ module platinenzentrum()
 {
     difference()
     {
-        color("blue")
+        color("white")
         loecher()
         {
             loch($depth,$mr,$depth);
@@ -311,10 +314,20 @@ module oberteilmitbatteriefach()
     }
 }
 
+module gehausemitloch()
+{
+    difference()
+    {
+        gehause();
+        translate([$ax,0,0])
+        schraubenloecher();
+    }
+}
+
 ////////////////////
 //Render
 ////////////////////
 
-gehause();
-//oberteilmitbatteriefach();
-//oberteil2();
+gehausemitloch();
+oberteilmitbatteriefach();
+oberteil2();
