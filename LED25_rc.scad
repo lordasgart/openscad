@@ -217,7 +217,8 @@ module platinenersatz()
     //platinenersatz
     //damit kein staub rein kommt, könnten wir ja links den schlitz zudrucken, mit einem stück was ax füllt und so dick ist wie die platine
     color("#44FF44")
-    cube([$ax,$pd+$depth, $ph]); //das muss bis hinter, sonst muss ich support drucken
+    translate([0,$pd,0]) cube([$ax,$depth, $ph]); //nur bis zu den löchern, dann ist mehr spielraum.... will ich doch die andere variante, dann einfach diese zeile inkl. translate auskommentiert und andere einkommentieren
+    //cube([$ax,$pd+$depth, $ph]); //das muss bis hinter, sonst muss ich support drucken
 }
 
 module platinenhalter_h()
@@ -328,6 +329,6 @@ module gehausemitloch()
 //Render
 ////////////////////
 
-gehausemitloch();
-oberteilmitbatteriefach();
+//gehausemitloch();
+//oberteilmitbatteriefach();
 oberteil2();
