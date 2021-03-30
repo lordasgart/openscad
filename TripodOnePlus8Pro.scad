@@ -1,0 +1,82 @@
+t=43; //Tiefe Basis
+b=43; //Breite Basis
+t2=35; //Tiefe Oben
+b2=35; //Breite Oben
+
+td=(t-t2)/2;
+bd=(b-b2)/2;
+
+ht=9; //Höhe Total
+hb=1.6; //Höhe unterer Cubus
+ho=ht-hb; //Höhe oben (polyhedron)
+
+CubePoints = [
+  [  0,  0,  0 ],  //0
+  [ b,  0,  0 ],  //1
+  [ b,  t,  0 ],  //2
+  [  0,  t,  0 ],  //3
+  [  bd,  bd,  ho ],  //4
+  [ t-bd,  bd,  ho ],  //5
+  [ t-bd,  t-bd,  ho ],  //6
+  [  bd,  t-bd,  ho ]]; //7
+  
+CubeFaces = [
+  [0,1,2,3],  // bottom
+  [4,5,1,0],  // front
+  [7,6,5,4],  // top
+  [5,6,2,1],  // right
+  [6,7,3,2],  // back
+  [7,4,0,3]]; // left
+
+module tripod()
+{
+translate([0,0,hb])  
+polyhedron( CubePoints, CubeFaces );
+
+cube([t,b,hb]);
+}
+
+tripod();
+//handy();
+vorne();
+hinten();
+stabilisatoren();
+
+//Handy
+
+hh=165.3; //Höhe Handy
+bh=74.3; //Breite Handy
+th=9.4; //Tiefe gemessen 9.4, Laut Hersteller nur 8.0
+
+module handy()
+{
+    translate([(b-hh)/2,(t-th)/2,ht])
+    cube([hh,th,bh]);
+}
+
+module vorne()
+{
+    translate([bd,(t-th)/2-th,ht])
+    cube([b2,th,bh]);
+}
+
+module hinten()
+{
+    translate([bd,(t-th)/2+th,ht])
+    cube([b2,th,bh]);
+}
+
+module stabilisator()
+{
+    cube([b2,(t-th)/2-th-td,ht]);
+}
+
+module stabilisatoren()
+{
+    translate([bd,td,ht])
+    stabilisator();
+    
+    translate([bd,(t-th)/2+th*2,ht])
+    stabilisator();
+}
+

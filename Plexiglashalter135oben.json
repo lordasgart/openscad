@@ -1,0 +1,15 @@
+{
+    "parameterSets": {
+        "design default values": {
+            "$h": "36",
+            "$t": "3",
+            "$th": "8"
+        },
+        "3mm Plexiglas": {
+            "$h": "36",
+            "$t": "3",
+            "$th": "8"
+        }
+    },
+    "fileFormatVersion": "1"
+}
