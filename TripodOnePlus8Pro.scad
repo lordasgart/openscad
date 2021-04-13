@@ -1,12 +1,12 @@
-t=43; //Tiefe Basis
-b=43; //Breite Basis
+t=44.4; //Tiefe Basis
+b=44.4; //Breite Basis
 t2=35; //Tiefe Oben
 b2=35; //Breite Oben
 
 td=(t-t2)/2;
 bd=(b-b2)/2;
 
-ht=9; //Höhe Total
+ht=10.2; //Höhe Total
 hb=1.6; //Höhe unterer Cubus
 ho=ht-hb; //Höhe oben (polyhedron)
 
@@ -38,9 +38,9 @@ cube([t,b,hb]);
 
 tripod();
 //handy();
-vorne();
-hinten();
-stabilisatoren();
+//vorne();
+//hinten();
+//stabilisatoren();
 
 //Handy
 
@@ -79,4 +79,7 @@ module stabilisatoren()
     translate([bd,(t-th)/2+th*2,ht])
     stabilisator();
 }
+
+translate([-t*3/2+b/2,-t*3/2+t/2,ht])
+cube([t*3,t*3,3.2]);
 
