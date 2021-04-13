@@ -35,3 +35,5 @@ cylinder(h=hfs, d=df);
 translate([0,0,hfs])
 cylinder(h=hft-hfs, d=ds);
 }
+
+//Jetzt die drei Löcher durchbohren, dünn, mittel, dick
