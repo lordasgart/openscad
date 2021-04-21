@@ -36,20 +36,15 @@ polyhedron( CubePoints, CubeFaces );
 cube([t,b,hb]);
 }
 
-tripod();
-//handy();
-//vorne();
-//hinten();
-//stabilisatoren();
-
 //Handy
 
-hh=165.3; //Höhe Handy
-bh=74.3; //Breite Handy
-th=9.4; //Tiefe gemessen 9.4, Laut Hersteller nur 8.0
+hh=174.0; //Höhe Handy
+bh=80; //Breite Handy
+th=11.5; //Tiefe gemessen 9.4, Laut Hersteller nur 8.0
 
 module handy()
 {
+    color("silver")
     translate([(b-hh)/2,(t-th)/2,ht])
     cube([hh,th,bh]);
 }
@@ -80,6 +75,25 @@ module stabilisatoren()
     stabilisator();
 }
 
+module platte_laptop()
+{
 translate([-t*3/2+b/2,-t*3/2+t/2,ht])
 cube([t*3,t*3,3.2]);
+}
 
+module platte_rogphone()
+{
+translate([-hh/2+b/2,-bh/2+t/2,ht])
+cube([hh,bh,3.2]);
+}
+
+
+
+tripod();
+
+handy();
+vorne();
+hinten();
+stabilisatoren();
+//platte_laptop();
+platte_rogphone();
