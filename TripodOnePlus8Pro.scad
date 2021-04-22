@@ -1,5 +1,5 @@
-t=44.4; //Tiefe Basis
-b=44.4; //Breite Basis
+t=44.2; //Tiefe Basis
+b=44.2; //Breite Basis
 t2=35; //Tiefe Oben
 b2=35; //Breite Oben
 
@@ -9,6 +9,9 @@ bd=(b-b2)/2;
 ht=10.2; //Höhe Total
 hb=1.6; //Höhe unterer Cubus
 ho=ht-hb; //Höhe oben (polyhedron)
+
+//plattendicke
+pd=3.2;
 
 CubePoints = [
   [  0,  0,  0 ],  //0
@@ -45,19 +48,19 @@ th=11.5; //Tiefe gemessen 9.4, Laut Hersteller nur 8.0
 module handy()
 {
     color("silver")
-    translate([(b-hh)/2,(t-th)/2,ht])
+    translate([(b-hh)/2,(t-th)/2,ht+pd])
     cube([hh,th,bh]);
 }
 
 module vorne()
 {
-    translate([bd,(t-th)/2-th,ht])
+    translate([bd,(t-th)/2-th,ht+pd])
     cube([b2,th,bh]);
 }
 
 module hinten()
 {
-    translate([bd,(t-th)/2+th,ht])
+    translate([bd,(t-th)/2+th,ht+pd])
     cube([b2,th,bh]);
 }
 
@@ -78,22 +81,48 @@ module stabilisatoren()
 module platte_laptop()
 {
 translate([-t*3/2+b/2,-t*3/2+t/2,ht])
-cube([t*3,t*3,3.2]);
+cube([t*3,t*3,pd]);
 }
 
 module platte_rogphone()
 {
-translate([-hh/2+b/2,-bh/2+t/2,ht])
-cube([hh,bh,3.2]);
+    color("#AAAAFF")
+translate([-hh/2+b/2-dv,-t/2+t/2,ht])
+cube([hh+dv*2,t,pd]);
 }
 
+//dicke_vorne
+dv=4;
 
+module vorne_rechts()
+{
+    translate([b+hh/2-b/2-dv,(t-th)/2-th,ht+pd])
+    cube([dv,th,bh]);
+}
+
+module vorne_links()
+{
+    translate([-hh/2+b/2,(t-th)/2-th,ht+pd])
+    cube([dv,th,bh]);
+}
 
 tripod();
 
-handy();
-vorne();
+//handy();
+//vorne();
 hinten();
-stabilisatoren();
+//stabilisatoren();
 //platte_laptop();
 platte_rogphone();
+vorne_rechts();
+vorne_links();
+
+translate([dv,0,0])
+vorne_rechts();
+translate([dv,th,0])
+vorne_rechts();
+
+translate([-dv,0,0])
+vorne_links();
+translate([-dv,th,0])
+vorne_links();
