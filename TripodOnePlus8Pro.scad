@@ -12,6 +12,14 @@ ho=ht-hb; //Höhe oben (polyhedron)
 
 //plattendicke
 pd=3.2;
+dv=4;
+
+//Höhe Handy
+hh=174.0*1.01;
+//Breite Handy
+bh=80*1.01;
+//Tiefe Handy, gemessen 9.4, Laut Hersteller nur 8.0
+th=11.5*1.01; 
 
 CubePoints = [
   [  0,  0,  0 ],  //0
@@ -39,12 +47,6 @@ polyhedron( CubePoints, CubeFaces );
 cube([t,b,hb]);
 }
 
-//Handy
-
-hh=174.0; //Höhe Handy
-bh=80; //Breite Handy
-th=11.5; //Tiefe gemessen 9.4, Laut Hersteller nur 8.0
-
 module handy()
 {
     color("silver")
@@ -60,8 +62,9 @@ module vorne()
 
 module hinten()
 {
-    translate([bd,(t-th)/2+th,ht+pd])
-    cube([b2,th,bh]);
+    trh = (t-th)/2+th;
+    translate([-hh/2+b/2-dv,trh,ht+pd])
+    cube([hh+dv*2,pd,bh]);
 }
 
 module stabilisator()
@@ -90,9 +93,6 @@ module platte_rogphone()
 translate([-hh/2+b/2-dv,-t/2+t/2,ht])
 cube([hh+dv*2,t,pd]);
 }
-
-//dicke_vorne
-dv=4;
 
 module vorne_rechts()
 {
