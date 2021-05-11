@@ -1,5 +1,5 @@
-t=44.2; //Tiefe Basis
-b=44.2; //Breite Basis
+t=43.8; //Tiefe Basis
+b=43.8; //Breite Basis
 t2=35; //Tiefe Oben
 b2=35; //Breite Oben
 
@@ -11,15 +11,15 @@ hb=1.6; //Höhe unterer Cubus
 ho=ht-hb; //Höhe oben (polyhedron)
 
 //plattendicke
-pd=3.2;
-dv=4;
+pd=1.6;
+dv=3.8;
 
 //Höhe Handy
-hh=174.0*1.01;
+hh=174.0*1.03;
 //Breite Handy
-bh=80*1.01;
+bh=80*1.03/3;
 //Tiefe Handy, gemessen 9.4, Laut Hersteller nur 8.0
-th=11.5*1.01; 
+th=11.5*1.03; 
 
 CubePoints = [
   [  0,  0,  0 ],  //0
@@ -63,8 +63,8 @@ module vorne()
 module hinten()
 {
     trh = (t-th)/2+th;
-    translate([-hh/2+b/2-dv,trh,ht+pd])
-    cube([hh+dv*2,pd,bh]);
+        translate([bd,(t-th)/2+th,ht+pd])
+    cube([b2,th,bh]);
 }
 
 module stabilisator()

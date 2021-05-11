@@ -1,10 +1,10 @@
 $fn=90;
 //Durchmesser Knopf Innen
-dki=20.3;
+dki=20.3*1.03;//20.3 original * 103%
 //Durchmesser Knopf Aussen Oben
-dkao=22.2;
+dkao=22.2*1.03;//22.2 * 103%
 //Durchmesser Knopf Aussen Unten
-dkau=21.4;
+dkau=21.4*1.03;
 //Knopf Innen Abstand Schaumstoff
 kias=20.0; //23.5 Original, muss aber nicht ganz "rinter"
 //Knopf Innen Abstand Wand
@@ -34,8 +34,8 @@ khu=kaab-kho;
 
 module knopf_unten()
 {
-    translate([0,0,tb])
-    cylinder(h=khu,d=dkau);
+    translate([0,0,0])
+    cylinder(h=khu+tb,d=dkau);
 }
 
 module knopf_oben()
@@ -46,7 +46,7 @@ module knopf_oben()
 
 module knopf_massiv()
 {
-    blende();
+    //blende();
     knopf_unten();
     knopf_oben();
 }
@@ -57,8 +57,24 @@ module knopf_innen()
     cylinder(h=hki,d=dki);
 }
 
-difference()
+module knopf_ohne_blende()
 {
-    knopf_massiv();
-    knopf_innen();
+    difference()
+    {
+        knopf_massiv();
+        knopf_innen();
+    }
 }
+
+//knopf_ohne_blende();
+
+module blende_ohne_knopf()
+{
+    difference()
+    {
+        blende();
+        knopf_massiv();        
+    }
+}
+
+blende_ohne_knopf();
