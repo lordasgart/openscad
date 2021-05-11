@@ -17,16 +17,18 @@ t=2.96;//1.7+1.1;//=2.8 ==> recommended from slicer 2.96
 
 //Höhe Bauelement
 //h=27; //Switch
-h=20; //Server
+//h=20; //Server
+h=26; //USB-Hub
 
 //Breite L/R unten
 //lr=4; //Switch
-lr=15; //Server
+//lr=15; //Server
+lr=15; //USB-Hub
 
 //################
 
 //Tiefe
-d=sz; //Muss mindestens sz sein, damit vorne hinten genauso viel Abstand zu Schraube ist, wie links rechts
+d=sz*2.5; //Muss mindestens sz*1 sein, damit vorne hinten genauso viel Abstand zu Schraube ist, wie links rechts
 
 module spax()
 {
