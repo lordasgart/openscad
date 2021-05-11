@@ -11,7 +11,7 @@ shg=10;
 sz=so+sd*2;
 
 //Thickness
-t=1.7+1.1;
+t=2.96;//1.7+1.1;//=2.8 ==> recommended from slicer 2.96
 
 //################
 
