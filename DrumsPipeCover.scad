@@ -1,5 +1,5 @@
 $plate_height = 1.8;
-$inner_height = 3.6;
+$inner_height = 3.6*2.5;
 $d2=33.2;
 
 linear_extrude(height = 1.8)
