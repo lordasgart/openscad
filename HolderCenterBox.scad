@@ -59,24 +59,31 @@ connector_holzplatte();
 
 
 connector_down();
-translate([0,-20,0])
+translate([0,-22,0])
 connector_speaker();
 }
 
-translate([-bc/2,-bc/2,-tc/2])
+ar=7;
+
+translate([-bc/2+ar,-bc/2+ar,-tc/2])
 spax();
 
-translate([0,-bc/2,-tc/2])
+translate([0,-bc/2+ar,-tc/2])
 spax();
 
-translate([bc/2,-bc/2,-tc/2])
+translate([bc/2-ar,-bc/2+ar,-tc/2])
 spax();
 
-translate([bc/2,bc/2,-tc/2])
+translate([bc/2-ar,bc/2-ar,-tc/2])
 spax();
 
-translate([-bc/2,bc/2,-tc/2])
+translate([0,bc/2-ar,-tc/2])
+spax();
+
+translate([-bc/2+ar,bc/2-ar,-tc/2])
 spax();
 
 color("gray")
 schraube();
+
+//TODO: DIe Abstände nach unten noch ausrechnen und vom connector speaker den Durchmesser noch korrekt eintragen
