@@ -2,6 +2,23 @@ include<MiniSpax.scad>
 
 $fn=36;
 
+//Durchmesser Schraube
+ds=6.35; //= 1/4 Zoll
+//Länge Schraubenhals
+lsh=11.2;
+//Höhe/Länge Schraubenkopf Total (falls wir Abstand brauchen)
+hs=4.6;
+//Durchmesser Beilagscheibe integriert
+db=13;
+//Höhe Beilagscheibe
+hb=1.25;
+//Durchmesser Mutternkopf
+dm=10.85;
+//Länge Schraube toal
+lst=16.4;
+//Höhe Mutternkopf
+hm=lst-hb-lsh;
+
 //Breite Connector
 bc=50;
 //Tiefe Connector
@@ -25,8 +42,9 @@ module connector_holzplatte()
 
 module connector_down()
 {
+    xy=12;
     translate([0,0,-61/2-tc/2])
-    cube([1,1,61], center=true);
+    cube([xy,xy,61], center=true);
 }
 
 module connector_speaker()
@@ -35,11 +53,30 @@ module connector_speaker()
     translate([0,0,-61-30/2-tc/2])
     cube([30,5,30], center=true);
 }
-
+hull()
+{
 connector_holzplatte();
+
+
 connector_down();
+translate([0,-20,0])
 connector_speaker();
+}
 
 translate([-bc/2,-bc/2,-tc/2])
 spax();
+
+translate([0,-bc/2,-tc/2])
+spax();
+
+translate([bc/2,-bc/2,-tc/2])
+spax();
+
+translate([bc/2,bc/2,-tc/2])
+spax();
+
+translate([-bc/2,bc/2,-tc/2])
+spax();
+
+color("gray")
 schraube();
