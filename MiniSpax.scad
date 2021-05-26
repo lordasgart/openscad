@@ -1,3 +1,5 @@
+$fn=90;
+
 //Höhe Spax-Schraubenkopf
 sk=1.7;
 //Spax oben

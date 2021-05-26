@@ -15,7 +15,10 @@ tc=2.96;
 cb=50; //wie Holder
 //höhe connector
 hc=20; //wie holder
-
+module spax()
+{
+    import("MiniSpax.stl", convexity=3);
+}
 //thickness querstrebe
 tq=2.54;
 //breite querstrebe
@@ -29,6 +32,8 @@ module firehd7()
 
 //firehd7();
 
+module total()
+{
 //connector
 color("#696969")
 translate([0,t/2+tc/2,0])
@@ -55,3 +60,28 @@ cube([bq,tq+t+tq+t*0.03, tq], center=true);
 //unten vorne
 translate([0,-shifty,-shiftz])
 cube([bq,tq,btb], center=true);
+}
+
+module spaxg()
+{
+    translate([0,5.2,0])
+    rotate([-90,0,0])
+    spax();
+}
+
+difference()
+{
+total();
+
+translate([-cb/8,0,-hc/4])
+spaxg();
+
+translate([cb/8,0,-hc/4])
+spaxg();
+
+translate([cb/8,0,hc/4])
+spaxg();
+
+translate([-cb/8,0,hc/4])
+spaxg();
+}
