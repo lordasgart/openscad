@@ -69,11 +69,17 @@ module spaxg()
     spax();
 }
 
-difference()
+module spaxh()
 {
-total();
+    scale([0.5,1,0.5])
+    translate([0,5.2,0])
+    rotate([-90,0,0])
+    spax();
+}
 
-translate([-cb/8,0,-hc/4])
+module fourspax() 
+{
+    translate([-cb/8,0,-hc/4])
 spaxg();
 
 translate([cb/8,0,-hc/4])
@@ -84,4 +90,54 @@ spaxg();
 
 translate([-cb/8,0,hc/4])
 spaxg();
+}    
+
+module fourspax2() 
+{
+    translate([-cb/8,0,-hc/4])
+spaxh();
+
+translate([cb/8,0,-hc/4])
+spaxh();
+
+translate([cb/8,0,hc/4])
+spaxh();
+
+translate([-cb/8,0,hc/4])
+spaxh();
+}   
+
+module holder()
+{
+difference()
+{
+total();
+
+fourspax();
+}
+}
+
+//holder();
+
+
+difference()
+{
+//connector
+color("#696969")
+translate([0,t/2+tc/2,0])
+cube([cb/2,tc,hc], center=true);
+
+fourspax();
+}
+
+difference()
+{
+//connector
+color("#696969")
+translate([0,t/2+tc/2-tc*4.5/2+tc/2,-hc])
+cube([cb/2,tc*4.5,hc], center=true);
+
+
+translate([0,-14,-hc])
+fourspax2();
 }
