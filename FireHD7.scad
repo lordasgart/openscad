@@ -1,16 +1,16 @@
 //width
 w=191;
 //height
-h=115;
+h=77;
 //thickness
-t=10.5;
+t=8.5;
 //border lr
 blr=17;
 //border tb
-btb=10;
+btb=4+2.54;
 
 //connector thickness (spax-bohrungen beachten!)
-tc=2.96;
+tc=2.54;
 //connector breite
 cb=50; //wie Holder
 //höhe connector
@@ -22,7 +22,7 @@ module spax()
 //thickness querstrebe
 tq=2.54;
 //breite querstrebe
-bq=36-0.3;
+bq=32-0.3;
 
 module firehd7()
 {
@@ -47,8 +47,9 @@ cube([bq,tq,h*1.03], center=true);
 translate([0,-t*0.03/2,h*1.03/2])
 cube([bq,tq+t+tq+t*0.03, tq], center=true);
 
-shifty=6.85;
-shiftz=55.5;
+shifty=5.77;
+shiftz=37.65;
+    
 //oben vorne
 translate([0,-shifty,shiftz])
 cube([bq,tq,btb], center=true);
@@ -64,7 +65,7 @@ cube([bq,tq,btb], center=true);
 
 module spaxg()
 {
-    translate([0,5.2,0])
+    translate([0,4.2,0])
     rotate([-90,0,0])
     spax();
 }
@@ -117,9 +118,10 @@ fourspax();
 }
 }
 
-//holder();
+holder();
 
-
+module adapter()
+{
 difference()
 {
 //connector
@@ -140,4 +142,5 @@ cube([cb/2,tc*4.5,hc], center=true);
 
 translate([0,-14,-hc])
 fourspax2();
+}
 }
