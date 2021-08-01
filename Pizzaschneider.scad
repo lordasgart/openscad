@@ -18,21 +18,29 @@ dd=12;
 
 dre=2.5; //Durchmesser gerundete Ecke
 
-module basics()
+module abasics()
 {
 cylinder(h=a,d=da);
 
 translate([0,0,a])
 cylinder(h=b,d=db);
 
-translate([0,0,a+b])
+}
+
+module cplate()
+{
+    translate([0,0,a+b])
 cylinder(h=c,d=dc);
 }
 
-basics();
+//abasics();
+cplate();
+dmiddle();
 
 se=dd/2-dre/2;
 
+module dmiddle()
+{
 translate([0,0,a+b+c])
 scale([1,1,0.25])
 minkowski()
@@ -42,4 +50,5 @@ cube([dd-dre,dd-dre,d], center=true);
 
 //translate([se,se,a+b+c-d/2])
 cylinder(h=d,d=dre);
+}
 }
