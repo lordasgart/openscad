@@ -7,6 +7,10 @@ wz=w*1.5;
 t=2.54;
 th=2.5;
 
+ds=2.5; //durchmesser schraube
+dso = 6.75; //durchmesser schraube oben (kopf)
+hk=3.0; //(hoehe kopf)
+
 module wand()
 {
 color("red")
@@ -31,13 +35,41 @@ cube([w,th,h]);
 
 translate([w,0,0])
 cube([w,th,h]);
+    
+    
 }
 
+module waende()
+{
+    
 wand();
 
 translate([0,0,h-t])
 wand();
+}
 
+module waende_mit_loechern()
+{difference()
+    {
+    waende();
+        
+        holes();
+    }
+}
+
+waende_mit_loechern();
+
+module holes()
+{
 translate([w/2,h/2,0])
 color("blue")
-cylinder(h=h,d=5);
+cylinder(h=h,d=ds);
+
+translate([w/2,h/2,h-t])
+color("green")
+cylinder(h=t,d=dso);
+
+translate([w/2,h/2,-hk+t])
+color("pink")
+cylinder(h=hk,d1=ds, d2=dso);
+}

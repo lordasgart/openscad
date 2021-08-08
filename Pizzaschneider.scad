@@ -14,9 +14,9 @@ d=2.1;
 da=13.75;
 db=9.75;
 dc=23;
-dd=12;
+dd=11;
 
-dre=2.5; //Durchmesser gerundete Ecke
+dre=6; //Durchmesser gerundete Ecke
 
 module abasics()
 {
@@ -33,9 +33,9 @@ module cplate()
 cylinder(h=c,d=dc);
 }
 
-//abasics();
-cplate();
-dmiddle();
+abasics();
+//cplate();
+//dmiddle();
 
 se=dd/2-dre/2;
 
