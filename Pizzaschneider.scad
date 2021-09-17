@@ -33,7 +33,7 @@ module cplate()
 cylinder(h=c,d=dc);
 }
 
-//abasics();
+abasics();
 cplate();
 dmiddle();
 
