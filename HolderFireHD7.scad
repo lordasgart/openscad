@@ -25,7 +25,7 @@ bc=50;
 tc=4.0;
 
 //Höhe Box vorne
-hbv=100;
+hbv=115;
 //Höhe Box hinten
 hbh=77;
 //Abstand Schraubenlochzentrum zu hinten Rand
@@ -39,6 +39,7 @@ cd=hbv/2;
 cb=50;
 //Winkel
 winkeldown=15;
+winkellr=5;
 
 //Abstand der Spax vom Rand
 ar=7;
@@ -82,16 +83,16 @@ module connector_down()
 
 module connector_speaker()
 {
-    rotate([winkeldown,0,0])
+    rotate([winkeldown,0,winkellr])
     translate([0,bc/2-tc/2,-cd-tc/2])
     cube([cb/2,tc,20], center=true);
 }
 
 module schraubenbohrung_unten()
 {    
-    translate([0,0,-48]) //Passt fast perfekt mit y=0
+    translate([0.5,-0.5,-54.5]) //Passt fast perfekt mit y=0
     color("gray")
-    rotate([90+15,0,0])
+    rotate([90+winkeldown,0,winkellr])
     schrauben_bohrung();
 }
 
@@ -119,6 +120,8 @@ module allespax()
 //color("gray")
 //schraube();
 
+module lrspeaker()
+{
 difference()
 {
     connector_holzplatte();
@@ -131,8 +134,12 @@ difference()
     {
         connector_down();
         
-        translate([0,-43,-6])
+        translate([4,-45,-5])
         connector_speaker();
     }
-    schraubenbohrung_unten();
+    //schraubenbohrung_unten();
 }
+}
+
+mirror([1,0,0])
+lrspeaker();
