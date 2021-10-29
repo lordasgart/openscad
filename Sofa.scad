@@ -43,22 +43,30 @@ module brett_sitzflaeche()
 
 brett_sitzflaeche();
 
-module brett_sitzflaeche_begrenzung_hinten_vorne(s)
+module brett_sitzflaeche_begrenzung_hinten_vorne(s, isWhitePlank)
 {
-    color("#BA8C63")
-    cube([bm,dlb,hm*1.5+dlb+s]);
+    if (isWhitePlank)
+    {
+        //color("#BA8C63")
+        cube([bm,dwb,hm*1.5+dwb+s]);
+    }
+    else
+    {
+        color("#BA8C63")
+        cube([bm,dlb,hm*1.5+dlb+s]);   
+    }
 }
 
 module brett_sitzflaeche_begrenzung_vorne()
 {
-    translate([0,-dlb,-dlb])
-    brett_sitzflaeche_begrenzung_hinten_vorne(0);
+    translate([0,-dwb,-dlb])
+    brett_sitzflaeche_begrenzung_hinten_vorne(0, true);
 }
 
 module brett_sitzflaeche_begrenzung_hinten()
 {
     translate([0,tm,-dlb])
-    brett_sitzflaeche_begrenzung_hinten_vorne(4);
+    brett_sitzflaeche_begrenzung_hinten_vorne(4, false);
 }
 
 brett_sitzflaeche_begrenzung_vorne();
