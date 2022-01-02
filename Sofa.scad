@@ -9,10 +9,16 @@ tmd = -3;
 //Breite Matte
 bm = 118;
 //Dicke weisses Brett
-dwb = 5;
+dwb = 2;
 //Dicker Leimholzbrett
-dlb = 3;
+dlb = 2;
 
+//Rotation
+r = 70;
+
+//194x92,5x2 1x
+//180x18x2   2x
+//180x8x2    1x
 
 module matte()
 {
@@ -28,7 +34,7 @@ module klappmatte()
     matte();
 
     translate([0,tm+hm+hmd,hm*2+tmd])
-    rotate([70,0,0])
+    rotate([r,0,0])
     matte();
 }
 
@@ -48,12 +54,12 @@ module brett_sitzflaeche_begrenzung_hinten_vorne(s, isWhitePlank)
     if (isWhitePlank)
     {
         //color("#BA8C63")
-        cube([bm,dwb,hm*1.5+dwb+s]);
+        cube([bm,dwb,hm*0.5+dwb+s]);
     }
     else
     {
         color("#BA8C63")
-        cube([bm,dlb,hm*1.5+dlb+s]);   
+        cube([bm,dlb,hm*0.5+dlb+s]);   
     }
 }
 
@@ -66,8 +72,23 @@ module brett_sitzflaeche_begrenzung_vorne()
 module brett_sitzflaeche_begrenzung_hinten()
 {
     translate([0,tm,-dlb])
-    brett_sitzflaeche_begrenzung_hinten_vorne(4, false);
+    brett_sitzflaeche_begrenzung_hinten_vorne(1, false);
 }
 
 brett_sitzflaeche_begrenzung_vorne();
 brett_sitzflaeche_begrenzung_hinten();
+
+module brett_hinten()
+{
+    color("#BA8C63")
+    
+    translate([0,tm+4,-2])
+    rotate([r,0,0])
+    cube([bm,tm+6,dlb]);
+}
+
+brett_hinten();
+
+rotate([33,0,0])
+translate([bm,9,-8])
+cube([dlb,tm*1.4,dlb]);
