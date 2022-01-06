@@ -6,7 +6,7 @@ wt=2.54; //6 lines
 //Durchmesser außen 19
 da=25.5; //22*1,08*1.08
 //Durchmesser innen
-di=17;
+di=18; //17 orig
 //Länge Stange
 ls=640;
 //Cube
@@ -115,10 +115,17 @@ module metallconnector()
 
 module bearrollingadapter()
 {
-    hkl=5;
+    hkl=6.5;
     cylinder(h=hkl,d=dki);
+    
+    tir=0.6;
+    dir=10.5;
+    
     translate([0,0,hkl])
-    cylinder(h=hkl*2,d=di);
+    cylinder(h=tir,d=dir);
+    
+    translate([0,0,hkl+tir])
+    cylinder(h=hkl,d1=di,d2=16.5);
 }
 
 bearrollingadapter();
