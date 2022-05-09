@@ -4,11 +4,17 @@ include <PrusaImport.scad>
 t=wt8; //8 lines, as the connector on the desk is about 3.3 this is a good value not to scratch the wood with attached connector...
 
 //spar = 14;
-spar=14*1.05; //variante 2 mit kulanz für blende
+spar=14*1; //variante 2 mit kulanz für blende
 wood=18;
 
 //left
-cube([t,spar,spar]);
+difference()
+{
+    cube([t,spar,spar]);
+    translate([0,0,spar/4])
+    cube([t,spar,spar/2]);
+}
+
 
 //top
 translate([0,0,spar])
