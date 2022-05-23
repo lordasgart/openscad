@@ -4,7 +4,7 @@ $fn=36;
 d=8.36;
 
 //3 Linien nach Perimeters.xlsx
-c=9.67;
+c=11.4;//10.93;
 
 
 
