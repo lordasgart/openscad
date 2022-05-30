@@ -18,7 +18,8 @@ hg=fh-gh+t;
 
 //griffversatz nach innen
 gv=gh;
-
+module truhe()
+{
 cube([w,t,fh]);
 
 translate([0,0,fh])
@@ -32,3 +33,12 @@ cube([gh,gt,gh]);
 
 translate([0,-gt-gh,hg])
 cube([w,gh,gh]);
+}
+
+difference()
+{
+truhe();
+//translate([w/2,-w/2,0])
+translate([-w/2,-w/2,0])
+cube([w,w,w]);
+}
