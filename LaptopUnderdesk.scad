@@ -13,7 +13,9 @@ ka=t+0.42*10; //=7.99
 //Tiefe Brett
 tb=260;
 //Tiefe Connector oben
-tco=tb/2;
+tco=tb/3; //ca. 90 nach hinten gemessen
+//Total bottom connector width
+tbcw=t+b+t;
 
 //Unterer Verbinder (eine Wand)
 module connectorwallbottom()
@@ -28,7 +30,7 @@ connectorwallbottom();
 
 color("red")
 translate([0,0,hbc])
-cube([t+b+t,d,ka]);
+cube([tbcw,d,ka]);
 
-translate([0,0,hbc+ka])
+translate([-tco/2+tbcw/2,0,hbc+ka])
 cube([tco,d,t]);
