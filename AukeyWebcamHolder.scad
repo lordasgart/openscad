@@ -1,11 +1,11 @@
 $fn=18;
 
 //Dicke
-d=10.5;
+d=11;
 //Top width
 tw=36;
 //Bottom width
-bw=44;
+bw=44.5;
 //Durchmesser Stopfen
 ds=4.8;
 //Height
@@ -23,7 +23,7 @@ module webcam() {
     cube([bw, d, h]);
 }
  
-webcam();
+//webcam();
  
 //Halter linke Wand
 btwd=bw-tw;
@@ -42,7 +42,7 @@ module brett() {
     cube([bb, ts*4, h]);
 }
  
-brett();
+//brett();
 
 //Halter unter
 translate([0,0,0])
