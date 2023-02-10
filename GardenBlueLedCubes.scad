@@ -1,10 +1,10 @@
 $fn=36;
 
 //Durchmesser Plastik LED
-d=8.36;
+d=8.36+0.42*3;
 
 //3 Linien nach Perimeters.xlsx
-c=9.67;
+c=11.4+0.42*3;//10.93;
 
 
 
