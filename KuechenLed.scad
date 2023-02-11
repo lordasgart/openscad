@@ -29,11 +29,16 @@ module Part2() {
     cube([breite-randlr*2,3,hoehe-rando-randu]);
 }
 
-difference()
+module Lampe()
 {
-    Part1();
-    Part2();
+    difference()
+    {
+        Part1();
+        Part2();
+    }
 }
+
+//Lampe();
 
 module Part3()
 {
@@ -64,8 +69,17 @@ Part5();
 //Hinter dem Abstandhalter für die Schraube
 module Part6() {
     color("gray")
-    translate([0,dicke+abstand,0]) 
+    translate([-t,dicke+abstand,0]) 
     cube([randlr+t+randlr,t,hh]);
 }
 
 Part6();
+
+module Part7() {    
+    translate([randlr+randlr-t-t,dicke+abstand+t,hh/2]) 
+    rotate([90,0,0])
+    color("blue")
+    cylinder(h=t, d2=3.5, d1=0.5);
+}
+
+Part7();
