@@ -47,8 +47,6 @@ module Part3()
     cube([wh, t, hh]); //rcube
 }
 
-Part3();
-
 module Part4()
 {
     color("gray")
@@ -56,15 +54,11 @@ module Part4()
     cube([t,dicke+abstand,hh]); //rcube
 }
 
-Part4();
-
 module Part5() {
     color("gray")
     translate([0,dicke,0]) 
     cube([randlr,abstand,hh]);
 }
-
-Part5();
 
 //Hinter dem Abstandhalter für die Schraube
 module Part6() {
@@ -73,8 +67,6 @@ module Part6() {
     cube([randlr+t+randlr,t,hh]);
 }
 
-Part6();
-
 module Part7() {    
     translate([randlr+randlr-t-t,dicke+abstand+t,hh/2]) 
     rotate([90,0,0])
@@ -82,4 +74,16 @@ module Part7() {
     cylinder(h=t, d2=3.5, d1=0.5);
 }
 
-Part7();
+module holder()
+{
+    Part3();
+    Part4();
+    Part5();
+    Part6();
+}
+
+difference()
+{
+    holder();
+    Part7();
+}
