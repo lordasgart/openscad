@@ -60,3 +60,12 @@ module Part5() {
 }
 
 Part5();
+
+//Hinter dem Abstandhalter für die Schraube
+module Part6() {
+    color("gray")
+    translate([0,dicke+abstand,0]) 
+    cube([randlr+t+randlr,t,hh]);
+}
+
+Part6();
