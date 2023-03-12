@@ -7,19 +7,38 @@ width = (3/5)*tabletwidthfold4;
 
 height = 70;
 
-depth = 15;
+depth = 40;
 
-t = 3;
+front = 10;
+
+t = 2.08;
 
 module a()
 {
-cube([width,depth,3]);
+    cube([width,depth,t]);
 
-translate([0,-t,0])
-cube([width,t,height]);
+    translate([0,-t,0])
+    cube([width,t,height]);
 
-translate([0,depth,0])
-cube([width,t,10+t]);
+    translate([0,depth,0])
+    cube([width,t,front+t]);
+        
+    translate([0,depth+0.31,front+1.25])    
+    rotate([45,0,0])
+    {
+        color("red")
+        cube([width,t,t*2]);
+        
+        translate([0,t/2,0])
+        rotate([0,90,0])
+        color("green")
+        cylinder(h=width,d=t);
+        
+        translate([0,t/2,t*2])
+        rotate([0,90,0])
+        color("blue")
+        cylinder(h=width,d=t);
+    }    
 }
 
 module hole() {
