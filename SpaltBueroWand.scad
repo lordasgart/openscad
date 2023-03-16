@@ -2,6 +2,9 @@
 s1a=5.1; //spalt-w1-anfang: 5.1
 s1e=4.87;//spalt-w1-ende: 4.87
 
+s1m=(s1a+s1e)/2; //Mitte
+
+//s=s1e;
 s=s1e;
 
 h=5; //feste hoehe für alle stücke
@@ -9,6 +12,7 @@ h=5; //feste hoehe für alle stücke
 d=h*2;
 
 t=0.86;
+
 tz=0.3+0.2+0.2+0.2; //0.9
 
 w1=380; //Wandteil 1
@@ -25,12 +29,14 @@ vc=(d-s)/2;
 
 cube([w, d, tz]);
 
+x=0.8;
+
 module clip()
 {
+translate([0,x,0])
 cube([w, t, vc+tz]);
-translate([0,ac,0])
+translate([0,d-t-x,0])
 cube([w, t, vc+tz]);
 }
 
-translate([0,vc,0])
 clip();
