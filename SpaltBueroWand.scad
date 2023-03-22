@@ -5,7 +5,7 @@ s1e=4.87;//spalt-w1-ende: 4.87
 s1m=(s1a+s1e)/2; //Mitte
 
 //s=s1e;
-s=s1e;
+s=s1m;
 
 h=5; //feste hoehe für alle stücke
 
@@ -25,11 +25,11 @@ w=127; //Länge der einzelnen Stücke
 ac=s-t;
 
 //Versatz Clip
-vc=(d-s)/2;
+vc=(d-s1a)/2;
 
 cube([w, d, tz]);
 
-x=0.8;
+x=(d-s)/2;
 
 module clip()
 {
