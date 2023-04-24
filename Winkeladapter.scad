@@ -69,7 +69,13 @@ poebbel(xnl);
 color("green")
 poebbel(xnr);
 
+bss=bs*0.9;
 
+k=13;
+j=29.5;
+translate([b/2-bss/2,k,d])
+color("blue")
+cube([bss,j-k,4.5]);
 
 
 
