@@ -1,3 +1,5 @@
+$fn=36;
+
 //Abstand zwischen zwei Winkeln
 d2=3.6;
 d=d2/2;
@@ -73,11 +75,16 @@ bss=bs*0.9;
 
 k=13;
 j=29.5;
+dw=4.5;
 translate([b/2-bss/2,k,d])
 color("blue")
-cube([bss,j-k,4.5]);
+cube([bss,j-k,dw]);
 
+//Loch Durchmesser
+ld=6;
 
+color("red")
+translate([b/2,0,d])
+cylinder(h=d+dw, d=ld);
 
-
-
+s
