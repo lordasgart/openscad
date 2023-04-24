@@ -31,15 +31,24 @@ bnf=5;
 //Abstand Nut Rand
 anr=3;
 
-difference() {
-cube([b,l,d]);
+module teil()
+{
+    cube([b,l,d]);
+    schlitzfueller();
+}
 
+difference() {
+
+teil();
 translate([b/2-bn/2,yn1a,0])
 cube([bn,tn1,d]);
     
     
 translate([b/2-bn/2,l-tn2-yn2a,0])
     cube([bn,tn2,d]);
+    
+    
+    schraubenloch();
 }
 
 //nut a tiefe (die am eck)
@@ -62,6 +71,7 @@ ncy=29.5;
 nct=35.5-ncy;
 translate([xn,ncy,d])
 cube([bnf,nct,tn]);
+    
 }
 
 xnl=anr+(obn-bnf)/2;
@@ -73,12 +83,19 @@ poebbel(xnr);
 
 bss=bs*0.9;
 
+
+
 k=13;
 j=29.5;
 dw=4.5;
-translate([b/2-bss/2,k,d])
+
+module schlitzfueller()
+{
+    translate([b/2-bss/2,k,d])
 color("blue")
 cube([bss,j-k,dw]);
+}
+
 
 //Loch Durchmesser
 ld=6;
@@ -87,9 +104,11 @@ po=23;
 //Panel oben total
 pot=32;
 
+module schraubenloch()
+{
 color("red")
 translate([b/2,pot-po+po/2,0])
 cylinder(h=d+dw, d=ld);
-
+}
 
 
