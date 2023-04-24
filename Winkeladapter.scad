@@ -1,0 +1,51 @@
+//Abstand zwischen zwei Winkeln
+d2=3.6;
+d=d2/2;
+
+//Länge von außen bis zum Eck
+l=38.8;
+b=35;
+
+//Breite Schlitz
+bs=9;
+//Breite Nippel
+bn=8;
+//y Nippel 1 (Eck)
+yn1a=1;
+yn1b=6;
+tn1=yn1b-yn1a;
+
+//yh (von hinten) Nippel 2
+yn2a=2;
+yn2b=6.5;
+tn2=yn2b-yn2a;
+
+//cube([b,l,d2]);
+
+//Original-Breite Nut
+obn=7.5;
+//Soll Nut Füller
+bnf=5;
+//Abstand Nut Rand
+anr=3;
+
+difference() {
+cube([b,l,d]);
+
+translate([b/2-bn/2,yn1a,0])
+cube([bn,tn1,d]);
+    
+    
+translate([b/2-bn/2,l-tn2-yn2a,0])
+    cube([bn,tn2,d]);
+}
+
+//nut a tiefe (die am eck)
+nay=7;
+nat=13-nay;
+tn=2;
+
+xn=anr+(obn-bnf)/2;
+
+translate([xn,nay,d])
+cube([bnf,nay,tn]);
