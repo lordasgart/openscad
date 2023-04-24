@@ -45,7 +45,33 @@ nay=7;
 nat=13-nay;
 tn=2;
 
-xn=anr+(obn-bnf)/2;
+module poebbel(xn) {
 
 translate([xn,nay,d])
-cube([bnf,nay,tn]);
+cube([bnf,nat,tn]);
+
+nby=17;
+nbt=25-nby;
+
+translate([xn,nby,d])
+cube([bnf,nbt,tn]);
+
+ncy=29.5;
+nct=35.5-ncy;
+translate([xn,ncy,d])
+cube([bnf,nct,tn]);
+}
+
+xnl=anr+(obn-bnf)/2;
+xnr=b-bnf-xnl;
+
+poebbel(xnl);
+color("green")
+poebbel(xnr);
+
+
+
+
+
+
+
