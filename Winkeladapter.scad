@@ -82,9 +82,14 @@ cube([bss,j-k,dw]);
 
 //Loch Durchmesser
 ld=6;
+//Panel oben 
+po=23;
+//Panel oben total
+pot=32;
 
 color("red")
-translate([b/2,0,d])
+translate([b/2,pot-po+po/2,0])
 cylinder(h=d+dw, d=ld);
 
-s
+
+
