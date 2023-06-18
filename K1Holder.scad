@@ -3,9 +3,12 @@ $fn=72;
 h=32;
 d=48;
 
-t=2;
+t=3.5;
+ts=2.5;
+ds=6.5;
+
 d2=d+t*2;
-dt=h/2;
+dt=h/2+t*2;
 d3=d2+dt;
 d4=d3/2-dt/4;
 
@@ -50,12 +53,41 @@ module holderhalf()
     }
 }
 
-holderhalf();
 
 y=sin(45);
 x=cos(45);
 
-translate([-d4*x, -d4*y, 0])
+module screw()
+{
 color("red")
-cylinder(h=h, d=2);
+cylinder(h=t, d1=ts, d2=ds);
+}
 
+module screw1()
+{
+    translate([-d4*x, -d4*y, 0])
+screw();
+}
+
+module screw2()
+{
+    translate([d4*x, -d4*y, 0])
+screw();
+}
+
+module screws()
+{
+screw1();
+screw2();
+}
+
+module holder()
+{
+    difference()
+    {
+    holderhalf();
+screws();
+    }
+}
+
+holder();
