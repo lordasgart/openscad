@@ -59,16 +59,18 @@ rotate([90,0,180])
 plattes();
 platte2();
 
+tw=10;
 txy=gs2-d;
 //rotate([0,90,180])
 module t()
 {
-scale([10,1,1])
+
 rotate([180,90,0])
+linear_extrude(tw)
 triangle(a=txy,b=txy,c_angle=90);
 }
 
-translate([gs/2,d,txy+d])
+translate([gs/2+tw/2,d,txy+d])
 rotate([45,0,0])
 t();
 
