@@ -13,6 +13,10 @@ depth2=7.5;
 heightp=155;
 heighth=90;
 
+//holder
+widthh = width2+t*2;
+depthh = depth1+t*2;
+
 module foldWithoutCameraClosed() {
     color("#AAAAAA")
     cube([width1, depth1, heightp]);
@@ -38,10 +42,44 @@ module phonesInHolder() {
 
 module holder() {
     difference() {
-        cube([width2+t*2, depth1+t*2, heighth]);
+        cube([widthh, depthh, heighth]);
         
         phonesInHolder();
     }
 }
 
-holder();
+//holder();
+
+//Set front deeper to be able to reach the hole(s!)
+
+module frontcutbox() {
+    translate([t,0,t+heighth/2])
+    cube([width2, depth1, heightp]);
+}
+
+module holderWithDeeperFront() {
+    difference() {
+        holder();
+        frontcutbox();
+    }
+}
+
+holderWithDeeperFront();
+
+//Hole(s!)
+
+module hole() {
+    color("#FF0000")
+    rotate([270,0,0])
+    cylinder(t,t*2,t);
+}
+
+translate([widthh * 0.25,depthh-t,heighth*0.75])
+hole();
+
+translate([widthh * 0.75,depthh-t,heighth*0.75])
+hole();
+
+//Less to print
+
+//USB
