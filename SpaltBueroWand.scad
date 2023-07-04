@@ -5,7 +5,9 @@ s1e=4.87;//spalt-w1-ende: 4.87
 s1m=(s1a+s1e)/2; //Mitte
 
 //s=s1e;
-s=s1m;
+s=s1m; // S1M war zu dünn und hat für S2A gepasst
+
+// => Was ist die Differenz von S1M zu S2A?
 
 h=5; //feste hoehe für alle stücke
 
