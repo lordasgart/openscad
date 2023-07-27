@@ -1,11 +1,11 @@
-t=1.4;
-to=1;
+t=1.0;
+to=0.5;
 //Breite Karte
-bk=51.4;
+bk=54.0;
 //Dicke Karte
 dk=0.5;
 //Hoehe Karte
-hk=84.9;
+hk=85.6;
 //Hoehe Cover
 hc=bk/2;
 
