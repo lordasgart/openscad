@@ -12,7 +12,7 @@ hk=50+2;
 // Hoehe Front
 hf=21+1;
 // Hoehe Halter
-hh=hk*2;
+hh=hk*2-18;
 //Tiefe breite Seite (geschlossen, ohne Kamera)
 tbs=7.1+tod;
 //Tiefe schmale Seite ("")
