@@ -20,22 +20,36 @@ tss=7.1+tod;
 //Abstand zum USB-Slot
 ausb=3.6;
 
+$fn=36;
+
 module klotz()
 {
     cube([bg+t*2,tbs+t+th,hh+t]);
 }
 
-module slotusb()
+sz1=16;
+sz2=30;
+
+module slots()
 {
+    //front
     color("blue")
     
     translate([ausb+t,0,t])
     cube([bg-ausb*2,tbs+t,hh]);
     
+    //speakers
     color("orange")
     
-    translate([0,0,16+t])
-    cube([bg+t+t,tbs+t,30]);
+    translate([0,0,sz1+t])
+    cube([bg+t+t,tbs+t,sz2]);
+    
+    speaker_z_side();
+    
+    speaker_z_front();
+    
+    translate([bg+t-ausb*2-t,0,0])
+    speaker_z_front();
 }
 
 module slothandy()
@@ -49,6 +63,26 @@ module slothandy()
 difference()
 {
     klotz();
-    slotusb();
     slothandy();
+    slots();
 }
+
+q=tbs*2+t+t;
+
+module speaker_z_side()
+{
+color("green")
+translate([0,tbs/2-th,sz1+sz2+t])
+rotate([0,90,0])
+    cylinder(h=bg+t*2, d=q);
+}
+
+module speaker_z_front()
+{
+translate([ausb+t,0,sz1+sz2+tbs+ausb])
+rotate([270,0,0])
+color("gray")
+cylinder(h=t, d=ausb*2);
+}
+
+
