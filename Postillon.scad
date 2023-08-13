@@ -1,7 +1,7 @@
 //Postillon
 w=102;
 h=129;
-t=1.4;
+t=1.6;
 z=w/8;
 
 difference()
