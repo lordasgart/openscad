@@ -1,5 +1,5 @@
 //Tickness
-t=1.6;
+t=2;
 //Thickness hinten
 th=4.0; //wegen Kamera
 //Toleranz
@@ -65,6 +65,7 @@ difference()
     klotz();
     slothandy();
     slots();
+    finger();
 }
 
 q=tbs*2+t+t;
@@ -85,4 +86,13 @@ color("gray")
 cylinder(h=t, d=ausb*2);
 }
 
+bf=bg/2;
 
+module finger()
+{
+    color("#FF00FF")
+    translate([bg/2-bf/2+t,0,0])
+    cube([bf,tbs+t,t]);
+}
+
+//finger();

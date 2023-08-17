@@ -1,4 +1,4 @@
-t=2.0;
+t=2.4;
 //Breite Doppelklebeband
 bdk=26;//25.2;
 //Breite Klebefläche
