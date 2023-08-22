@@ -30,16 +30,31 @@ linear_extrude(a2-ad-af)
 polygon([[t,-t],[t+wf,-t],[t,-t-wf]]);
 }
 
-module cut()
+module cut(yy)
 {
 color("yellow")
 translate([0,0,-hk])
-cube([b+af,a2,hk+h]);
+cube([b+af,yy,hk+h]);
 }
 
 difference()
 {
     piece();
-    translate([0,ad+af+hk,0])
-    cut();
+    
+    yyy=ad+af+hk;
+    
+    //translate([0,ad+af+hk,0])
+    //cut(a2);
+    
+    cut(yyy);
+
+    translate([0,yyy*2,0])
+    cut(yyy);
+
+    //translate([0,yyy*2,0])
+    //cut(yyy);
+
+    //hinten
+    translate([0,a2-yyy,0])
+    cut(a2);
 }
