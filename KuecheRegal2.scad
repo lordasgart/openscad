@@ -48,11 +48,11 @@ difference()
     
     cut(yyy);
 
-    translate([0,yyy*2,0])
-    cut(yyy);
-
     //translate([0,yyy*2,0])
     //cut(yyy);
+
+    translate([0,yyy,0])
+    cut(yyy);
 
     //hinten
     translate([0,a2-yyy,0])
