@@ -15,7 +15,7 @@ ka=11;
 //Breite-Klickabstand
 kb=b-ka;
 //thickness
-t=d+d+d;
+t=d;
 
 //Front A: volle Hoehe innen, damit auch gut gegen den Boden gedrückt wird
 module fronta() {
