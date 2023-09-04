@@ -17,6 +17,8 @@ kb=b-ka;
 //thickness
 t=d;
 
+$fn=36;
+
 //Front A: volle Hoehe innen, damit auch gut gegen den Boden gedrückt wird
 module fronta() {
     translate([0,0,d])
@@ -33,9 +35,17 @@ cube([b,t+t,t+t]);
 
 connector();
 
+difference()
+{
 translate([0,t,bi+t+t])
 fronta();
 
+color("green")
+translate([b/2,d,bi+bi/2+t+t+t])
+rotate([270,0,0])
+cylinder(d, d1=sod,d2=sud);
+
+}
 /*
 module klick()
 {
