@@ -3,7 +3,7 @@ s=170;
 //Klebeband
 k=25+2;
 //Thickness
-t=0.6;
+t=1.8;
 //kt
 kt=40;
 

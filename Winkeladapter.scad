@@ -98,7 +98,8 @@ cube([bss,j-k,dw]);
 
 
 //Loch Durchmesser
-ld=6;
+//ld=6;
+ld=8.4;
 //Panel oben 
 po=23;
 //Panel oben total
