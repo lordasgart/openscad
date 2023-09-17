@@ -1,20 +1,41 @@
-//SolarSchraubenAdapter2
+//SolarSchraubenAdapter3
 
 $fn=72;
+to=0.2;
+w=28.2-to;
+d=24;
+h=19;
+d1=7.5+to+to;
+h1=7.3;
+
+difference()
+{
+//color([55,55,55], alpha=1)
+cube([w,d,h]);
+
+translate([(w-d1)/2,0,h1])
+color("green")
+cube([d1,d,h-h1]);
+}
+
+
+
+
+/*
 
 y=34.5;
 y2=14.2;
-to=0.2;
+
 h1=y2;//14.8+to;
 y1=y-y2+to;
-w=28.2;
+
 
 hs=52;
 hs3=2.8;
 hs2=5.5-hs3;
 hs1=hs-hs2-hs3;
 
-d1=7.5+to+to;
+
 d2=9.7;
 d3=20;
 d4=16;
@@ -51,3 +72,4 @@ difference()
     klotz();
     sch2();
 }
+*/
