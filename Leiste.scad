@@ -1,4 +1,4 @@
-$fn=36;
+$fn=180;
 
 t=1.2;
 //Tiefe in die Platte (ohne Zusatz)
@@ -7,7 +7,7 @@ d=10;
 //w=d*2; //für Ecke
 w=44; //für Rand (manuell)
 //Hoehe der Platte (ohne Zusatz)
-h=3;
+h=5.25;
 
 //Ich kann ja nicht ganz raus mit ner Spitzen Ecke, hier kommt die Variable f ins Spiel, die das ganze weiter nach innen verschiebt:
 f=t*2;
