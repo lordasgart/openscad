@@ -1,4 +1,4 @@
-t=2.4;
+t=2.6;
 //Breite Doppelklebeband
 bdk=26;//25.2;
 //Breite Klebefläche
@@ -50,3 +50,7 @@ color("orange")
 translate([bk/2-bh/2,hh/2+t,t])
 cube([bh,hh,th+t]);
 }
+
+color("green")
+translate([bk/2-bh/2,hh/2+t,th+t])
+cube([bh,hh,t]);
