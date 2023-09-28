@@ -5,7 +5,7 @@ t=1.2;
 d=10;
 //Länge die wir brauchen
 //w=d*2; //für Ecke
-w=101.5; //für Rand (manuell)
+w=109.5; //für Rand (manuell)
 //Hoehe der Platte (ohne Zusatz)
 h=5.25;
 
