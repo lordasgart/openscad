@@ -1,19 +1,19 @@
-$fn=18;
+$fn=180;
 
 t=1.2;
 //Tiefe in die Platte (ohne Zusatz)
 d=5;
 //Länge die wir brauchen
-w=d*2; //für Ecke
-//w=109.5; //für Rand (manuell)
+//w=d*2; //für Ecke
+w=109.5; //für Rand (manuell)
 //Hoehe der Platte (ohne Zusatz)
 h=16;
 
 //Ich kann ja nicht ganz raus mit ner Spitzen Ecke, hier kommt die Variable f ins Spiel, die das ganze weiter nach innen verschiebt:
 f=t*2;
 
-b=0; //Ecke
-//b=1; //Rand
+//b=0; //Ecke
+b=1; //Rand
 
 //cube([w, d+t, h+t+t]);
 
