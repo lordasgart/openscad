@@ -4,10 +4,12 @@ hoehe=100;
 
 cube([dicke,tiefe,hoehe]);
 
-//Irgendeinen Halter daraus machen z.B. Stifte, Kopfhörer, Kabel, Kassette, ...
-
 //Front
 breite=dicke*2; //~3mm
 
 translate([-breite,-dicke,0])
 cube([breite+dicke, dicke, hoehe]);
+
+//Irgendeinen Halter daraus machen z.B. Stifte, Kopfhörer, Kabel, Kassette, ...
+
+
