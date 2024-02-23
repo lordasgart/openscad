@@ -5,7 +5,7 @@ title="Lichthalter";
 th=13.5;
 
 //Durchmesser Halter (geschätzt)
-dh=11.8;
+dh=12;
 
 //Durchmesser Böbel (geschätzt)
 db=2.8;
