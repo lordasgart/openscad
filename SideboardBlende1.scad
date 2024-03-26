@@ -12,4 +12,11 @@ cube([breite+dicke, dicke, hoehe]);
 
 //Irgendeinen Halter daraus machen z.B. Stifte, Kopfhörer, Kabel, Kassette, ...
 
-
+/*
+translate([0,-dicke,0])
+{
+    cube([50,tiefe+dicke,dicke]);
+    translate([50,0,0])
+    cube([dicke,tiefe+dicke,20]);
+}
+*/
