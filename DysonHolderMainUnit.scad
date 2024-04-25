@@ -1,7 +1,7 @@
 $fn=36;
-innerwidth = 86;
-innerdepth = 33;
-frontwallwitdh=14;
+innerwidth = 84;
+innerdepth = 31;
+frontwallwitdh=13;
 height=128;
 t=4;
 outerwidth=innerwidth+t+t;
@@ -53,13 +53,14 @@ difference()
 }
 
 //Höhe Schraubenkopf
-hsk=2;
+hst=16.5;
+hsk=300;
 //Durchmesser Schraubenkopf
-dsk=3;
+dsk=6.75;
 //Durchmesser Schraube
 ds=1.5;
 //Höhe Schrauben(gewinde)
-hs=10;
+hs=hst-hsk;
 
 module schraube()
 {
