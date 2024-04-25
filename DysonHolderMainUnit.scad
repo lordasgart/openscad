@@ -4,25 +4,52 @@ innerdepth = 33;
 frontwallwitdh=14;
 height=128;
 t=4;
+outerwidth=innerwidth+t+t;
 
 module mainunitholder()
 {
     difference()
     {
-        cube([innerwidth+t+t, innerdepth+t+t, height+t]);   
+        cube([outerwidth, innerdepth+t+t, height+t]);   
         
         translate([t,t,t])
         cube([innerwidth, innerdepth, height]);
         
         translate([frontwallwitdh,0,0])
-        cube([innerwidth+t+t-frontwallwitdh*2, t, height+t]);
+        cube([outerwidth-frontwallwitdh*2, t, height+t]);
     }
 }
 
 difference()
 {
-    //mainunitholder();
-    schraube();
+    mainunitholder();
+    
+    translate([0,innerdepth+t,0])
+    {
+        translate([outerwidth/3,0,height/6*5])
+        schraube();
+        
+        translate([outerwidth/3*2,0,height/6*5])
+        schraube();
+        
+        translate([outerwidth/3,0,height/6*4])
+        schraube();
+        
+        translate([outerwidth/3*2,0,height/6*4])
+        schraube();
+        
+        translate([outerwidth/3,0,height/6*3])
+        schraube();
+        
+        translate([outerwidth/3*2,0,height/6*3])
+        schraube();
+        
+        translate([outerwidth/3,0,height/6*2])
+        schraube();
+        
+        translate([outerwidth/3*2,0,height/6*2])
+        schraube();
+    }
 }
 
 //Höhe Schraubenkopf
@@ -39,7 +66,7 @@ module schraube()
     translate([0,hsk,0])
     rotate([90,0,0])
     {
-        cylinder(h=hsk,d=ds, d2=dsk);
+        cylinder(h=hsk,d1=ds, d2=dsk);
         translate([0,0,-hs])
         cylinder(h=hs,d=ds);
     }
