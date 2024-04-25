@@ -54,11 +54,11 @@ difference()
 
 //Höhe Schraubenkopf
 hst=16.5;
-hsk=300;
+hsk=3;
 //Durchmesser Schraubenkopf
 dsk=6.75;
 //Durchmesser Schraube
-ds=1.5;
+ds=3.5;
 //Höhe Schrauben(gewinde)
 hs=hst-hsk;
 
