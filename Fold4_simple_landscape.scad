@@ -1,3 +1,5 @@
+include <Schraube.scad>
+
 //Tickness
 t=2;
 //Thickness hinten
@@ -66,6 +68,13 @@ difference()
     slothandy();
     slots();
     finger();
+    schraube_mitte();
+    
+    translate([40,0,0])
+    schraube_mitte();
+    
+    translate([-40,0,0])
+    schraube_mitte();
 }
 
 q=tbs*2+t+t;
@@ -95,4 +104,13 @@ module finger()
     cube([bf,tbs+t,t]);
 }
 
+breite_total=bg+t*2;
+hoehe_total=hh+t;
+
+module schraube_mitte()
+{
 //finger();
+    translate([breite_total/2,tbs+t-0.1,hoehe_total/2])
+    rotate([270,0,0])
+    Schraube();
+}
