@@ -7,7 +7,7 @@ w=45;
 d=21;
 h=75;
 
-t=3;
+t=2.5;
 
 //Front left and right
 f=10;
