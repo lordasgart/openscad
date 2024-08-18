@@ -3,8 +3,8 @@
 
 include <Schraube.scad>
 
-w=45;
-d=21;
+w=60;
+d=21.5;
 h=75;
 
 t=2.5;
