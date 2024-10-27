@@ -10,20 +10,21 @@ swlcdt=15;
 //Switch LCD
 
 //Breite Switch OLED
-swoledb=175;
+swoledb=177;
 //Hoehe Switch OLED
-swoledh=101;
+//swoledh=101; //Die Haelfte reicht als Halter
+swoledh=50;
 //Tiefe Switch OLED
 swoledt=15;
 
 //Abstand Bildschirm
-ab=5;
+ab=6;
 
 //Abstand zu Lautsprecher L+R
 al=ab*2;
 
 //Thickness
-t=0.9*4;
+t=2.3;
 
 module switchlcd() {
     translate([(swoledb-swlcdb)/2+t,0,t])
