@@ -11,16 +11,36 @@ module erhoehung()
     import("/home/lordasgart/Nextcloud/Documents/3D/Ideen/TischerhoehungSimplified.svg");
 }
 
-re=b*1.1;
+
 
 difference()
-{
-    resize([re,re,f])
-    translate([-(re-b)/2,-(re-b)/2,f])
-    erhoehung();
+{   
+    oben();
 
     translate([0,0,f])
     erhoehung();
 }
 
 erhoehung();
+
+module top(factor,h) {    
+    r=b*factor;
+    resize([r,r,h])
+    translate([-(r-b)/2,-(r-b)/2,h])
+    erhoehung();
+}
+
+module oben()
+{
+    top(1.00,f-2);
+    top(1.01,f-1.8);
+    top(1.02,f-1.6);
+    top(1.03,f-1.4);
+    top(1.04,f-1.2);
+    top(1.05,f-1.0);
+    top(1.06,f-0.8);
+    top(1.07,f-0.6);
+    top(1.08,f-0.4);
+    top(1.09,f-0.2);
+    top(1.1,f);    
+}
