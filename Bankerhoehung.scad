@@ -34,6 +34,13 @@ module top(factor,h) {
 
 module oben()
 {
+    for (a =[0:20])
+    {
+        b = 1.0 + 0.005 * a;
+        c = 2 - 0.1 * a;
+        echo("", b, ",", c);
+    }
+    
     top(1.00,f-2);
     top(1.005,f-1.9);
     top(1.01,f-1.8);
