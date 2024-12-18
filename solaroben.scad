@@ -27,7 +27,7 @@ tv=2;
 
 module lochanlage()
 {
-    s=0.999;
+    s=0.9;
     color("green")
     translate([0,-(10-k)/2,0])
     scale([s,s,s])
