@@ -35,4 +35,47 @@ difference()
     
     translate([0,0,f])
     erhoehung();    
+    
+    for( i = [20 : 20 : 140] )
+    {
+    translate([i, b/2, 0])
+    bleistift();
+    }
+    
+    translate([82,0,0])
+    cutblock();
+}
+
+//durchmesser bleistift
+db=8;
+
+$fn=72;
+
+module bleistift()
+{
+color("lightblue")
+cylinder(h=f,d=db);
+}
+
+module schraube()
+{
+    color("orange")
+    {
+        hk=2;
+        h=18;
+        cylinder(h=hk, d1=5, d2=2);
+        translate([0,0,hk])
+        cylinder(h=h, d1=2, d2=1);
+    }
+}
+
+schraube();
+
+module cutblock()
+{
+color("blue")
+translate([0,0,-f])
+adapter();
+color("blue")
+adapter();
 }
