@@ -41,6 +41,9 @@ difference()
     translate([i, b/2, 0])
     bleistift();
     }
+    
+    translate([82,0,0])
+    cutblock();
 }
 
 //durchmesser bleistift
@@ -67,3 +70,12 @@ module schraube()
 }
 
 schraube();
+
+module cutblock()
+{
+color("blue")
+translate([0,0,-f])
+adapter();
+color("blue")
+adapter();
+}
