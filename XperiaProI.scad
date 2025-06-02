@@ -4,6 +4,8 @@ module xperiaproi() {
 
 $fn=36;
 
+// 166 (ok) x 72 (ok) x 8.9 (aber eher 9.3 in echt + 1.8 bis 2 mm Kamera)
+
 // Parameters
 size = [50, 30]; // Width and height of the rectangle
 radius = 5; // Radius of the rounded corners
