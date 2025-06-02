@@ -1,6 +1,6 @@
 //LampeVerstaerker
 
-$fn=36;
+$fn=72;
 
 l1=5;
 d12=9.5;
@@ -43,7 +43,31 @@ translate([-dh/2,0,0])
 cube([dh,dh/2,lt]);
 }
 
+module haelfte()
+{
 difference() {
     huelle1();
     lampenstueck();
+}
+}
+
+//haelfte();
+lh=lt/4;
+s=0.4;
+module halterinnen() {
+    cube([dh+s+s,dh+s,lh]);
+}
+
+module aussen() {
+    cube([dh+t+t,dh+t,lh]);
+    translate([-dh,0,0])
+    cube([dh+t+t+dh+dh, t, lh]);
+}
+
+difference() {
+    aussen();
+
+
+translate([t,0,0])
+halterinnen();
 }
