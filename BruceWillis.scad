@@ -1,5 +1,5 @@
 //BruceWillis
-t=1.8;
+t=1.7;
 rotate([-90,0,0])
 difference()
 {
