@@ -106,8 +106,10 @@ module cube_unten() {
 }
 
 module cube_vorne() {
-    translate([0,0,0])
-    cube([0,0,0]);
+    translate([0,-dbh,-dbh])
+    cube([brh,dbh,dbh+hr+bs/2]); //Höhe ist DickeBasishalter+Höhe des Panelrand(hr)+Breite Rand zu Solarzellen (max!)(bs)/2
+    
+    //=> Damit das gescheit auch hier reingeht, eine Halbe Kugel oben drauf mit bs/2 statt Kubus um bs/2 zu erhöhen.
 }
 
 test_hinten();
