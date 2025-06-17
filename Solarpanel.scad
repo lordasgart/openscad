@@ -14,15 +14,35 @@ hr=8.2;
 tr=2.55;
 //Breite Rand zu Solarzellen (max!)
 bs=4.0;
+//Kabel Durchmesser
+kd=6.5;
 
-bi=b-br*2;
-hi=h-hr*2;
+//Tiefe Rand hinten
+trh=35.0;
+//Tiefe hinten
+th=27.5;
 
-bz=bi-bs*2;
-hz=hi-bs*2;
+//Breite Basishalter aus Kuben
+brh=trh;
+
+//Dicke Basishalter aus Kuben
+dbh=kd;
+
+bi=b-br*2; //Breite Innenbereich komplett
+hi=h-hr*2; //Hoehe Innenbereich komplett
+
+bz=bi-bs*2; //Breite nur Solarzellenbereich
+hz=hi-bs*2; //Hoehe nur Solarzellenbereich
+
+bb=b-trh*2; //Breite hinten innen
+db=th; //Tiefe hinten innen
+hb=h-trh*2; //Hoehe hinten innen
+
+//Hinterer Kreis
+hk=kd*10;
 
 module panel_full() {
-    color("#444444")
+    color("#666666")
     cube([b,d,h]);
 }
 
@@ -37,8 +57,61 @@ module panel_space_solarcells() {
     cube([bz,tr,hz]);
 }
 
-difference() {
-    panel_full();
-    panel_space_front();
-    panel_space_solarcells();
+module panel_back() {
+    translate([trh,d-th,trh])
+    cube([bb,db,hb]);
 }
+
+module solarpanel() {
+    difference() {
+        panel_full();
+        panel_space_front();
+        panel_space_solarcells();
+        panel_back();
+    }
+}
+
+module test_hinten() {
+    rotate([0,270,0]) {
+        
+        //Kabel
+        translate([0,0,-b])
+        color("red")
+        linear_extrude(b)
+        translate([trh+kd/2,kd/2+d,0])        
+        circle(d = kd);
+        
+//        difference() {
+//            translate([hk/4,hk/2+d,0])
+//            circle(d = hk);
+//            
+//            color("blue")
+//            translate([hk/4,hk/2+d+hk/6,0])
+//            square(hk, true);
+//        }
+        //circle(d = hk*2);
+    }
+}
+
+solarpanel();
+
+module cube_hinten() {
+    translate([0,d,0]) //Versetzt um Dicke des Panel nach hinten
+    cube([brh,dbh,trh]); //BreiteHalter,DickeBasisHalter,TiefeRandHinten
+}
+
+module cube_unten() {
+    translate([0,0,-dbh]) //Versetzt um Dicke Basishalter
+    cube([brh,d+dbh,dbh]); //BreiteHalter,Dicke des Panel+DickeBasisHalter,DickeBasishalter
+}
+
+module cube_vorne() {
+    translate([0,0,0])
+    cube([0,0,0]);
+}
+
+test_hinten();
+
+cube_hinten();
+cube_unten();
+cube_vorne();
