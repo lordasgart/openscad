@@ -93,8 +93,6 @@ module test_hinten() {
     }
 }
 
-solarpanel();
-
 module cube_hinten() {
     translate([0,d,0]) //Versetzt um Dicke des Panel nach hinten
     cube([brh,dbh,trh]); //BreiteHalter,DickeBasisHalter,TiefeRandHinten
@@ -109,10 +107,22 @@ module cube_vorne() {
     translate([0,-dbh,-dbh])
     cube([brh,dbh,dbh+hr+bs/2]); //Höhe ist DickeBasishalter+Höhe des Panelrand(hr)+Breite Rand zu Solarzellen (max!)(bs)/2
     
-    //=> Damit das gescheit auch hier reingeht, eine Halbe Kugel oben drauf mit bs/2 statt Kubus um bs/2 zu erhöhen.
+    //=> TODO: Damit das gescheit auch hier reingeht, eine Halbe Kugel oben drauf mit bs/2 statt Kubus um bs/2 zu erhöhen.
 }
 
-//Viertel Kugel unten als halter mit radius so groß wie die zusammengesetzten Kuben jetzt tief sind insgesamt: //Schraube(n) mit vertikaler Nut (mit Beilagscheibendurchmesser!) nur hier, damit wir das nachfixieren können, wenn wir die Höhe noch anpassen wollen, wenn das Panel dann drauf ist.
+//Viertel Zylinder unten als halter mit radius so groß wie die zusammengesetzten Kuben jetzt tief sind insgesamt: //Schraube(n) mit vertikaler Nut (mit Beilagscheibendurchmesser!) nur hier, damit wir das nachfixieren können, wenn wir die Höhe noch anpassen wollen, wenn das Panel dann drauf ist.
+module quarter_cylinder() {
+    bqc= dbh+d+dbh; //Breite Quarter Cylinder
+    difference() {
+        translate([brh,brh/2,-dbh])
+        rotate([0,270,0])    
+        cylinder(h=brh, d=bqc);
+        
+        panel_full();
+    }
+    translate([0,-dbh+bqc/2,-bqc/2-dbh])
+    cube([brh,bqc/2,bqc/2]);
+}
 
 //Gleitabschnitt hinten oben noch
 
@@ -120,8 +130,11 @@ module cube_vorne() {
 
 
 
-test_hinten();
+//test_hinten();
+
+//solarpanel();
 
 cube_hinten();
 cube_unten();
 cube_vorne();
+quarter_cylinder();
