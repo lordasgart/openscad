@@ -112,11 +112,13 @@ module cube_vorne() {
     //=> Damit das gescheit auch hier reingeht, eine Halbe Kugel oben drauf mit bs/2 statt Kubus um bs/2 zu erhöhen.
 }
 
-//Viertel Kugel unten als halter mit radius so groß wie die zusammengesetzten Kuben jetzt tief sind insgesamt:
+//Viertel Kugel unten als halter mit radius so groß wie die zusammengesetzten Kuben jetzt tief sind insgesamt: //Schraube(n) mit vertikaler Nut (mit Beilagscheibendurchmesser!) nur hier, damit wir das nachfixieren können, wenn wir die Höhe noch anpassen wollen, wenn das Panel dann drauf ist.
 
 //Gleitabschnitt hinten oben noch
 
 //Prototyp mit brh = 1 oder so drucken
+
+
 
 test_hinten();
 
