@@ -1,5 +1,5 @@
 //Solarpanel
-$fn=70;
+$fn=180;
 //Breite
 b=1765;
 //Höhe
@@ -22,8 +22,12 @@ trh=35.0;
 //Tiefe hinten
 th=27.5;
 
+//Breitenanpassung
+//ba=-24;
+
 //Breite Basishalter aus Kuben
-brh=trh;
+//brh=trh+ba;
+brh=10;
 
 //Dicke Basishalter aus Kuben
 dbh=kd;
@@ -120,7 +124,7 @@ module cube_vorne() {
 module quarter_cylinder() {
     bqc= dbh+d+dbh; //Breite Quarter Cylinder
     difference() {
-        translate([brh,brh/2,-dbh])
+        translate([brh,trh/2,-dbh])
         rotate([0,270,0])    
         cylinder(h=brh, d=bqc);
         
