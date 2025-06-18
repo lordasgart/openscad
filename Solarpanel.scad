@@ -96,6 +96,9 @@ module test_hinten() {
 module cube_hinten() {
     translate([0,d,0]) //Versetzt um Dicke des Panel nach hinten
     cube([brh,dbh,trh]); //BreiteHalter,DickeBasisHalter,TiefeRandHinten
+    translate([brh,d+dbh/2,trh])
+    rotate([0,270,0])    
+    cylinder(h=brh, d=dbh);
 }
 
 module cube_unten() {
