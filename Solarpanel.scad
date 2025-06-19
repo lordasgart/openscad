@@ -23,11 +23,11 @@ trh=35.0;
 th=27.5;
 
 //Breitenanpassung
-//ba=-24;
+ba=0;
 
 //Breite Basishalter aus Kuben
-//brh=trh+ba;
-brh=10;
+brh=trh+ba;
+//brh=10;
 
 //Dicke Basishalter aus Kuben
 dbh=kd;
@@ -120,9 +120,12 @@ module cube_vorne() {
     cylinder(h=brh, d=dbh);
 }
 
+//Breite Quarter Cylinder
+bqc= dbh+d+dbh;
+
 //Viertel Zylinder unten als halter mit radius so groß wie die zusammengesetzten Kuben jetzt tief sind insgesamt: //Schraube(n) mit vertikaler Nut (mit Beilagscheibendurchmesser!) nur hier, damit wir das nachfixieren können, wenn wir die Höhe noch anpassen wollen, wenn das Panel dann drauf ist.
 module quarter_cylinder() {
-    bqc= dbh+d+dbh; //Breite Quarter Cylinder
+    
     difference() {
         translate([brh,trh/2,-dbh])
         rotate([0,270,0])    
@@ -148,3 +151,25 @@ cube_hinten();
 cube_unten();
 cube_vorne();
 quarter_cylinder();
+
+//Dicke Ratschennuss
+drn=20;
+//Dicke Schraube
+ds=5;
+
+color("red")
+translate([brh/2,-25,-dbh-bqc/4])
+rotate([270,0,0])
+cylinder(h=100, d=ds);
+
+color("red")
+translate([brh/2,-25,-dbh-bqc/4+ds])
+rotate([270,0,0])
+cylinder(h=100, d=ds);
+
+color("green")
+translate([brh/2-ds/2,-25,-dbh-bqc/4])
+cube([ds,100,ds]);
+
+//Jetzt zu felxiblen Modul und mit zwei Parameter Tiefe und
+//Durchmesser in der Dicker der Nuss
