@@ -157,19 +157,29 @@ drn=20;
 //Dicke Schraube
 ds=5;
 
-color("red")
-translate([brh/2,-25,-dbh-bqc/4])
-rotate([270,0,0])
-cylinder(h=100, d=ds);
+xxx=0;
+yyy=6;
 
-color("red")
-translate([brh/2,-25,-dbh-bqc/4+ds])
-rotate([270,0,0])
-cylinder(h=100, d=ds);
+module spalt_schraubendicke(spalt_dicke) {
+    color("red")
+    translate([brh/2,-25,-dbh-bqc/4+xxx-yyy])
+    rotate([270,0,0])
+    cylinder(h=100, d=spalt_dicke);
 
-color("green")
-translate([brh/2-ds/2,-25,-dbh-bqc/4])
-cube([ds,100,ds]);
+    color("red")
+    translate([brh/2,-25,-dbh-bqc/4+spalt_dicke-xxx-yyy])
+    rotate([270,0,0])
+    cylinder(h=100, d=spalt_dicke);
+
+    color("green")
+    translate([brh/2-spalt_dicke/2,-25,-dbh-bqc/4+xxx-yyy])
+    cube([spalt_dicke,100,spalt_dicke-xxx*2]);
+}
+
+spalt_schraubendicke(ds);
+//spalt_schraubendicke(drn);
 
 //Jetzt zu felxiblen Modul und mit zwei Parameter Tiefe und
 //Durchmesser in der Dicker der Nuss
+
+//TODO: Zentrum ist die Box vom Spalt (doch mal BOSL2 probieren?)
