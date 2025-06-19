@@ -106,6 +106,7 @@ module cube_hinten() {
 }
 
 module cube_unten() {
+    color("blue")
     translate([0,0,-dbh]) //Versetzt um Dicke Basishalter
     cube([brh,d+dbh,dbh]); //BreiteHalter,Dicke des Panel+DickeBasisHalter,DickeBasishalter
 }
@@ -127,7 +128,8 @@ bqc= dbh+d+dbh;
 module quarter_cylinder() {
     
     difference() {
-        translate([brh,trh/2,-dbh])
+        color("orange")
+        translate([brh,bqc/2-dbh,-dbh])
         rotate([0,270,0])    
         cylinder(h=brh, d=bqc);
         
@@ -176,10 +178,18 @@ module spalt_schraubendicke(spalt_dicke) {
     cube([spalt_dicke,100,spalt_dicke-xxx*2]);
 }
 
-spalt_schraubendicke(ds);
+//spalt_schraubendicke(ds);
 //spalt_schraubendicke(drn);
 
 //Jetzt zu felxiblen Modul und mit zwei Parameter Tiefe und
 //Durchmesser in der Dicker der Nuss
 
 //TODO: Zentrum ist die Box vom Spalt (doch mal BOSL2 probieren?)
+
+module spalt(dicke) {
+    color("green")
+    translate([brh/2-dicke/2,-25,0-dicke/2-dbh-bqc/4])
+    cube([dicke,100,dicke]);
+}
+
+spalt(ds);
