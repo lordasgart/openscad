@@ -154,8 +154,8 @@ cube_unten();
 cube_vorne();
 quarter_cylinder();
 
-//Dicke Ratschennuss
-drn=20;
+//Dicke Ratschennuss (10er=14, 11er=16, 12er=17 13er=18)
+drn=17;
 //Dicke Schraube
 ds=5;
 
