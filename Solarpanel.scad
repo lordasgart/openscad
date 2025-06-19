@@ -30,7 +30,7 @@ brh=trh+ba;
 //brh=10;
 
 //Dicke Basishalter aus Kuben
-dbh=kd;
+dbh=kd*2.1;
 
 bi=b-br*2; //Breite Innenbereich komplett
 hi=h-hr*2; //Hoehe Innenbereich komplett
@@ -186,10 +186,21 @@ module spalt_schraubendicke(spalt_dicke) {
 
 //TODO: Zentrum ist die Box vom Spalt (doch mal BOSL2 probieren?)
 
-module spalt(dicke) {
+module spalt(dicke,shoehe) { //Dicke des Spalts, Hoehe des Spalts zusätzlich zum Schraubendurchmesser
     color("green")
-    translate([brh/2-dicke/2,-25,0-dicke/2-dbh-bqc/4])
-    cube([dicke,100,dicke]);
+    translate([brh/2-dicke/2,-25,0-shoehe/2-dbh-bqc/4])
+    cube([dicke,100,shoehe]);
+    
+    color("red")
+    translate([brh/2,-25,-dbh-bqc/4+shoehe/2])
+    rotate([270,0,0])
+    cylinder(h=100, d=dicke);
+    
+    color("purple")
+    translate([brh/2,-25,-dbh-bqc/4-shoehe/2])
+    rotate([270,0,0])
+    cylinder(h=100, d=dicke);
 }
 
-spalt(ds);
+spalt(ds,5);
+spalt(drn,5);
