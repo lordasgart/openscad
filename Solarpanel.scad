@@ -148,35 +148,17 @@ module quarter_cylinder() {
 //test_hinten();
 
 //solarpanel();
-
+module halter() {
 cube_hinten();
 cube_unten();
 cube_vorne();
 quarter_cylinder();
+}
 
 //Dicke Ratschennuss (10er=14, 11er=16, 12er=17 13er=18)
-drn=17;
+drn=15;
 //Dicke Schraube
-ds=5;
-
-xxx=0;
-yyy=6;
-
-module spalt_schraubendicke(spalt_dicke) {
-    color("red")
-    translate([brh/2,-25,-dbh-bqc/4+xxx-yyy])
-    rotate([270,0,0])
-    cylinder(h=100, d=spalt_dicke);
-
-    color("red")
-    translate([brh/2,-25,-dbh-bqc/4+spalt_dicke-xxx-yyy])
-    rotate([270,0,0])
-    cylinder(h=100, d=spalt_dicke);
-
-    color("green")
-    translate([brh/2-spalt_dicke/2,-25,-dbh-bqc/4+xxx-yyy])
-    cube([spalt_dicke,100,spalt_dicke-xxx*2]);
-}
+ds=6;
 
 //spalt_schraubendicke(ds);
 //spalt_schraubendicke(drn);
@@ -186,21 +168,24 @@ module spalt_schraubendicke(spalt_dicke) {
 
 //TODO: Zentrum ist die Box vom Spalt (doch mal BOSL2 probieren?)
 
-module spalt(dicke,shoehe) { //Dicke des Spalts, Hoehe des Spalts zusätzlich zum Schraubendurchmesser
+module spalt(dicke,shoehe,tiefe) { //Dicke des Spalts, Hoehe des Spalts zusätzlich zum Schraubendurchmesser
     color("green")
-    translate([brh/2-dicke/2,-25,0-shoehe/2-dbh-bqc/4])
+    translate([brh/2-dicke/2,tiefe,0-shoehe/2-dbh-bqc/4])
     cube([dicke,100,shoehe]);
     
     color("red")
-    translate([brh/2,-25,-dbh-bqc/4+shoehe/2])
+    translate([brh/2,tiefe,-dbh-bqc/4+shoehe/2])
     rotate([270,0,0])
     cylinder(h=100, d=dicke);
     
     color("purple")
-    translate([brh/2,-25,-dbh-bqc/4-shoehe/2])
+    translate([brh/2, tiefe,-dbh-bqc/4-shoehe/2])
     rotate([270,0,0])
     cylinder(h=100, d=dicke);
 }
 
-spalt(ds,5);
-spalt(drn,5);
+difference() {
+    halter();
+    spalt(ds,ds,-25);
+    spalt(drn,ds,-75);
+}
