@@ -1,5 +1,6 @@
 //Gartenlicht
-
+include <BOSL2/std.scad>
+$fn=180;
 aussen=75;
 innen=71; //72
 hoehe=142;
@@ -41,6 +42,11 @@ module Kerze() {
 //Kerze();
 
 module deckel() {        
+    translate([aussen/2,aussen/2,hoehe-laenge_zylinder/2])
+    cuboid([aussen, aussen, laenge_zylinder+t*2], rounding=2);
+}
+
+module deckelc() {        
     translate([0,0,hoehe-laenge_zylinder-t])
     cube([aussen, aussen, laenge_zylinder+t*2]);
 }
