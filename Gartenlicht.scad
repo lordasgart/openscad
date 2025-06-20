@@ -1,7 +1,7 @@
 //Gartenlicht
 
 aussen=75;
-innen=72;
+innen=71; //72
 hoehe=142;
 
 oben=68;
@@ -58,6 +58,9 @@ difference() {
 }
 }
 
+s=1;
+scale([s,s,s])
+{
 difference() {
 a();Metal_hohl(); }
-    
+    }
