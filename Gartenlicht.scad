@@ -24,19 +24,23 @@ module Metal() {
 //Metal();
 
 module Kerze() {
-    translate([aussen/2,aussen/2,hoehe])
+    translate([(aussen+t/2)/2,(aussen+t/2)/2,hoehe])
     cylinder(h=laenge_kerze-laenge_zylinder, d=oben);
     
     color("green")
-    translate([aussen/2,aussen/2,hoehe-laenge_zylinder])
+    translate([(aussen+t/2)/2,(aussen+t/2)/2,hoehe-laenge_zylinder])
     cylinder(h=laenge_zylinder, d2=oben, d1=unten);
 }
 
-Kerze();
+//Kerze();
 
 module deckel() {        
     translate([mt,mt,hoehe-laenge_zylinder-t])
     cube([aussen, aussen, laenge_zylinder+t*2]);
 }
 
-deckel();
+difference() {
+    deckel();
+    Kerze();
+}
+    
