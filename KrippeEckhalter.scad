@@ -43,3 +43,7 @@ seite4();
 
 translate([b,0,0])
 cube([b+t+t+to,b+t+t+to,t]);
+
+color("green")
+translate([b,b+t+to,0])
+cube([t,t,a]);
