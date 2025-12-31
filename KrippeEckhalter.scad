@@ -28,6 +28,7 @@ module seite4()
     seite3();
 }
 
+color("blue")
 seite();
 //Unterteil Ecke Verlängerung 1 mit 2xt + Toleranz
 cube([b,b+t+t+to,t]);
@@ -39,6 +40,7 @@ seite3();
 translate([b,b+t+t+to,0])
 cube([b+t+t+to,b,t]);
 
+color("red")
 seite4();
 
 translate([b,0,0])
@@ -47,3 +49,10 @@ cube([b+t+t+to,b+t+t+to,t]);
 color("green")
 translate([b,b+t+to,0])
 cube([t,t,a]);
+
+translate([b,0,0])
+cube([b+t+t+to,t,a]);
+
+color("yellow")
+translate([b+b+t+to,t,0])
+cube([t,b+t+to,a]);
