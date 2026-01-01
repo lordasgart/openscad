@@ -2,6 +2,8 @@
 //Kuechentuer
 //-------------------------
 
+include <BOSL2/std.scad>
+
 //-------------------------
 //Breite Türrahmen
 btr=50.4;
@@ -29,4 +31,17 @@ hb=t+hta+t;
 //Tiefe Blende
 tb=t+tta+ttr;
 
-cube([bb,tb,hb]);
+difference()
+{
+//cube([bb,tb,hb]);
+cuboid([bb,tb,hb], chamfer=t, anchor=FRONT+LEFT+BOT);
+
+//Cube um Türrahmen auszusparen
+translate([t,t+tta,0])
+cuboid([btr,ttr,hb], anchor=FRONT+LEFT+BOT);
+    
+    //Cube um Inneres auszusparen
+translate([t,t,t])
+cube([btr,tta,hta]);
+}
+
