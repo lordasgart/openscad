@@ -22,7 +22,7 @@ hta=65;
 
 //-------------------------
 //Thickness
-t=2.0;
+t=2.4;
 
 //Breite Blende
 bb=t+btr+t;
