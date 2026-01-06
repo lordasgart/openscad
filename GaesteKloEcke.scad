@@ -1,2 +1,6 @@
-linear_extrude(height=5)
-    polygon(points=[[0,0], [50,0], [25,40]]);
+a=4;
+b=8;
+c=72;
+
+linear_extrude(height=b)
+    polygon(points=[[0,a], [a,0], [c,0], [0,c]]);
