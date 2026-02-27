@@ -4,7 +4,7 @@
 
 //(1500x2500) mm
 
-//Ideen: Lüftung, Schiene, Katzentüre
+//Ideen: Lüftung, Schiene, Katzentüre (wirklich? Katze soll doch eh nicht da raus...)
 
 w=1500;
 h=2500;
