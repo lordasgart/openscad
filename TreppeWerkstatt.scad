@@ -15,40 +15,63 @@ brett vorne zu wand (wie leiter) eher kleiner
 Holzwand
 */
 
+//Breite Leiterstufen
+bl=750;
+//Breite Brett
+bb=195;
+//Dicke Brett
+db=39;
+//Höhe Brett
+hb=3000;
+//Breite Wand
+bw=4000;
+//Dicke Wand
+dw=300;
+//Brett vorne zu Wand
+bvw=39;
+//Versatz Wand (für die optische Bearbeitung)
+vw=-1500;
+//Höhe Holzwand
+hh=2350;
+//Maximaler Abstand Leiterende
+male=900;
+//Dicke Begrenzungslinie
+dbl=50;
+
 module Brett()
 {
     color("#aa5500")
-    cube([195,39,3000]);
+    cube([bb,db,hb]);
 }
 
 Brett();
 
-translate([0,1000,0])
+translate([0,bl,0])
 Brett();
 
 module Wand()
 {
-    translate([-339,-600,0])
+    translate([-dw-bvw,vw,0])
     color("#ffda82")
-    cube([300,3000,2350]);
+    cube([dw,bw,hh]);
 }
 
 Wand();
 
 module Holzwand()
 {
-    translate([-300,-600,2350])
+    translate([-dw,vw,hh])
     color("#4c2600")
-    cube([300,3000,2350]);
+    cube([dw,bw,hh]);
 }
 
 Holzwand();
 
 module MaximalLinie()
 {
-    translate([900,0,0])
+    translate([male,0,0])
     color("#0055ff")
-    cube([10,1000,10]);
+    cube([dbl,bl,dbl]);
 }
 
 MaximalLinie();
