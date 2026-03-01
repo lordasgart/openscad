@@ -69,6 +69,10 @@ module Holzwand()
 
 Holzwand();
 
+translate([-dw,0,0])
+color("#5d3711")
+Holzwand();
+
 module MaximalLinie()
 {
     translate([male,0,0])
@@ -78,11 +82,13 @@ module MaximalLinie()
 
 MaximalLinie();
 
-translate([764,0,-190])
-rotate([0,-21.8,0])
+translate([719,0,-72.9])
+rotate([0,-22.0,0])
 Seitenbretter();
 
 
+translate([500,0,-500])
+cube([500, bl+db, 500]);
 
 
 
