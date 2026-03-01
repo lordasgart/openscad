@@ -36,7 +36,7 @@ hh=2350;
 //Maximaler Abstand Leiterende
 male=900;
 //Dicke Begrenzungslinie
-dbl=50;
+dbl=5;
 
 module Brett()
 {
@@ -44,10 +44,12 @@ module Brett()
     cube([bb,db,hb]);
 }
 
-Brett();
-
-translate([0,bl,0])
-Brett();
+module Seitenbretter()
+{
+    Brett();
+    translate([0,bl,0])
+    Brett();
+}
 
 module Wand()
 {
@@ -75,3 +77,15 @@ module MaximalLinie()
 }
 
 MaximalLinie();
+
+translate([764,0,-190])
+rotate([0,-21.8,0])
+Seitenbretter();
+
+
+
+
+
+
+
+
