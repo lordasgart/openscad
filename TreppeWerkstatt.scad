@@ -44,6 +44,21 @@ module Brett()
     cube([bb,db,hb]);
 }
 
+module LattenVorlage()
+{
+    difference()
+    {
+        translate([719,0,-72.9])
+        rotate([0,-22.0,0])
+        color("#666666")
+        Brett();
+        BodenStein();
+        Wand();
+        Holzwand();
+        Holzwand2();
+    }
+}
+
 module Seitenbretter()
 {
     Brett();
@@ -69,9 +84,12 @@ module Holzwand()
 
 Holzwand();
 
-translate([-dw,0,0])
-color("#5d3711")
-Holzwand();
+module Holzwand2()
+{
+    translate([-dw,0,0])
+    color("#5d3711")
+    Holzwand();
+}
 
 module MaximalLinie()
 {
@@ -86,12 +104,36 @@ translate([719,0,-72.9])
 rotate([0,-22.0,0])
 Seitenbretter();
 
+module BodenStein()
+{
+    translate([500,0,-500])
+    cube([500, bl+db, 500]);
+}
 
-translate([500,0,-500])
-cube([500, bl+db, 500]);
+BodenStein();
 
+translate([+719,0,337])
+rotate([0,22.0,0])
+LattenVorlage();
 
+hhe=130; //13cm Höhe Holzwand-Einstieg
+be=614; //61,4 cm Breite Einstieg
 
+module Messlatte1()
+{
+    translate([1560,0,0])
+    color("red")
+    cube([10,10,2510]);
+}
 
+Messlatte1();
 
+module Messlatte2()
+{
+    translate([1340,0,80])
+    color("green")
+    cube([10,10,1930]);
+}
+
+Messlatte2();
 
