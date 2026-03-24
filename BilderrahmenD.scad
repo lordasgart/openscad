@@ -6,7 +6,7 @@ $fn=36;
 
 { /*Bild*/
     //Dicke Bild
-    d=1; //0.2 for real rendering !!!
+    d=0.24; //0.2 for real rendering !!!
     //Width Bild
     w=155;
     //Height Bild
@@ -15,14 +15,12 @@ $fn=36;
 { /*Rahmen*/
     //Rahmendicke
     rd=10;
-    //
-    t=5;
-
-    //Überlappung
-    u=2;
-
-    r=2;
-    
+    //Thickness Rahmen
+    t=0.12*16;
+    //Rundung Rahmen
+    r=1.5;
+    //Überlappung nach innen
+    u=2;    
     //Toleranz Einlagefach
     tef=0.5;
 }
@@ -36,7 +34,18 @@ module blatt()
 module rahmenrohblock()
 {
     color("#444444")
-    cuboid([w+rd*2-u*2,h+rd*2-u*2,t], rounding=r);
+    cuboid([w+rd*2-u*2,h+rd*2-u*2,t], rounding=r, edges=[
+    
+    TOP+RIGHT,
+    TOP+LEFT,
+    TOP+BACK,
+    TOP+FWD,
+    
+    FWD+RIGHT,
+    FWD+LEFT,
+    BACK+RIGHT,
+    BACK+LEFT
+    ]);
 }
 
 //rahmenrohblock();
@@ -90,5 +99,5 @@ module rahmenuntenmitblatteinlage()
     }
 }
 
-rahmenuntenmitblatteinlage();
-//rahmenoben();
+//rahmenuntenmitblatteinlage();
+rahmenoben();
