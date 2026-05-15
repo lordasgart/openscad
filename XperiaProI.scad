@@ -1,56 +1,89 @@
-module xperiaproi() {
-    
+include <BOSL2/std.scad>
+
+//Breite
+b=169.5; //169-170
+//Höhe
+h=76; //77.5 mit Kamera, 25 bis USB, 20 bis Kamera
+h3=20;
+//Dicke
+d=11.5; //12 mit Kamera
+//Thickness
+t=3.4;
+//Front Innen
+i=8;
+
+//Huelle Breite
+hb=t+b+t;
+
+module handy()
+{
+    cube([b,d,h]);
+}
+
+module huelle()
+{
+    //cube([t+b+t,t+d+t,h3]);
+    cuboid([hb,t+d+t,h3+t/2], anchor=FRONT+LEFT+BOT, chamfer=t); //t/2 = top-chamfer
+}
+
+module halter()
+{
+    difference()
+    {
+        huelle();
+
+        translate([t,t,t]) handy(); //mitte
+        translate([t+i,0,t]) cube([b-i-i,d,h]); //front
+
+        translate([0,0,h3]) //t/2 = top-chamfer => see huelle
+        cube([t+b+t,t+d+t,h3]);
+
+        schrauben();
+    }
+}
+
+module front()
+{
+    cube([t,t,h3]);
 }
 
 $fn=36;
 
-// 166 (ok) x 72 (ok) x 8.9 (aber eher 9.3 in echt + 1.8 bis 2 mm Kamera)
-
-// Parameters
-size = [50, 30]; // Width and height of the rectangle
-radius = 5; // Radius of the rounded corners
-
-// Create the rounded rectangle
-module rounded_rectangle(size, radius) {
-    hull() {
-        // Bottom-left corner
-        translate([radius, radius]) circle(r = radius);
-        // Bottom-right corner
-        translate([size[0] - radius, radius]) circle(r = radius);
-        // Top-right corner
-        translate([size[0] - radius, size[1] - radius]) circle(r = radius);
-        // Top-left corner
-        translate([radius, size[1] - radius]) circle(r = radius);
-    }
-    // Fill the rectangle in the middle
-    translate([radius, radius]) square([size[0] - 2*radius, size[1] - 2*radius]);
-}
-
-// Example usage
-rounded_rectangle(size, radius);
-
-
-// Create the rounded cube
-module rounded_cube(size, radius) {
-    // Hull the corners
-    hull() {
-        // Bottom corners
-        translate([radius, radius, radius]) sphere(r = radius);
-        translate([size - radius, radius, radius]) sphere(r = radius);
-        translate([size - radius, size - radius, radius]) sphere(r = radius);
-        translate([radius, size - radius, radius]) sphere(r = radius);
-        // Top corners
-        translate([radius, radius, size - radius]) sphere(r = radius);
-        translate([size - radius, radius, size - radius]) sphere(r = radius);
-        translate([size - radius, size - radius, size - radius]) sphere(r = radius);
-        translate([radius, size - radius, size - radius]) sphere(r = radius);
-    }
-    // Fill the cube in the middle
-    translate([radius, radius, radius]) cube([size - 2*radius, size - 2*radius, size - 2*radius]);
-}
-
+module schraube1()
 {
-        
-    // Example usage
- //   rounded_cube(50, 5);
+    cylinder(h=2, d1=5.5, d2=3);
+    translate([0,0,2])
+    cylinder(h=10.5, d1=3, d2=1.5);
+}
+
+module schraube()
+{
+    color("red")
+    rotate([270,0,0])
+    schraube1();
+}
+
+halter();
+
+module schraubemitte()
+{
+    translate([hb/2,d+t-0.01,t+((h3/2-t/2))])
+    schraube();
+}
+
+module schrauben()
+{
+    schraubemitte();
+
+    translate([-30,0,0])
+    schraubemitte();
+
+    translate([30,0,0])
+    schraubemitte();
+
+    translate([-60,0,0])
+    schraubemitte();
+
+    translate([60,0,0])
+    schraubemitte();
 }
