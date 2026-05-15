@@ -13,7 +13,7 @@ module rightholder()
     leftholder();
 }
 
-//leftholder();
+
 //rightholder();
 $fn=72;
 k=18;
@@ -37,4 +37,25 @@ difference()
 {
 cylinder(h=4, d=k);
 cylinder(h=4, d=i);
+}
+
+rotate([-5,-7,0])
+translate([-8.8,7.5,0.82])
+rotate([0,0,35])
+leftholder();
+
+color("green", 0.5)
+translate([0,0,4])
+difference()
+{
+cylinder(h=6, r2=18, r1=16.5);
+cylinder(h=6, d=i);
+}
+
+color("blue", 0.5)
+translate([0,0,4])
+difference()
+{
+cylinder(h=6, r=15.5);
+cylinder(h=6, d=i);
 }
