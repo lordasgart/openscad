@@ -6,6 +6,7 @@ d1=75;
 d2=85;
 r=0.5;
 
+translate([0,0,r])
 minkowski() {
   cylinder(h=2.4-r*2, d=d2-r*2);
   sphere(r=r);
