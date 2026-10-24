@@ -1,5 +1,10 @@
+$fn=64;
+
 //Wandstärke
 t=2.4;
+
+//Rundungsradius (max 2, sonst bleibt oben neben der Innenbox kein Rand)
+rr=1.5;
 
 //Breite Innenbox
 bi=89;
@@ -25,9 +30,65 @@ module innenbox()
     cube([bi, ti, hi]);
 }
 
+//gerundet: oben links/rechts/vorne und vorne links/rechts, rest scharf
 module aussenbox()
 {
-    cube([ba, ta, ha]);
+    hull()
+    {
+        for(x=[rr, ba-rr])
+        {
+            //vorne senkrechte kanten
+            translate([x, rr, 0])
+            cylinder(r=rr, h=ha-rr);
+            //vorne oben ecken
+            translate([x, rr, ha-rr])
+            sphere(r=rr);
+            //kanten oben links/rechts bis hinten
+            translate([x, ta, ha-rr])
+            rotate([90,0,0])
+            cylinder(r=rr, h=ta-rr);
+        }
+        //hinten unten scharf
+        translate([0, ta-0.01, 0])
+        cube([ba, 0.01, 0.01]);
+    }
+}
+
+//querschnitt innenraum mit gerundeter oberkante (u=breite/tiefe, v=hoehe)
+module innenprofil(u0, l)
+{
+    translate([u0, ha-hi])
+    square([l, hi+1]);
+    difference()
+    {
+        translate([u0-rr, ha-rr])
+        square([l+rr+rr, rr+1]);
+        translate([u0-rr, ha-rr])
+        circle(r=rr);
+        translate([u0+l+rr, ha-rr])
+        circle(r=rr);
+    }
+}
+
+//innenbox als carveout mit den vier oberen kanten gerundet
+//(+1 oben damit oben sauber offen)
+module innenraum()
+{
+    x0=(ba-bi)/2;
+    y0=ta-ar-ti-t;
+    intersection()
+    {
+        //rundung links/rechts, entlang y
+        translate([0, y0+ti+rr, 0])
+        rotate([90,0,0])
+        linear_extrude(ti+rr+rr)
+        innenprofil(x0, bi);
+        //rundung vorne/hinten, entlang x
+        translate([x0-rr, 0, 0])
+        rotate([90,0,90])
+        linear_extrude(bi+rr+rr)
+        innenprofil(y0, ti);
+    }
 }
 
 module carveouthinten()
@@ -64,9 +125,8 @@ module zahnputzhalter()
     difference()
     {
         aussenbox();
-        //mittig in der Breite, ar von hinten, oben buendig (+1 damit oben sauber offen)
-        translate([(ba-bi)/2, ta-ar-ti-t, ha-hi])
-        cube([bi, ti, hi+1]);
+        //mittig in der Breite, ar von hinten, oben buendig
+        innenraum();
         carveouthinten();
         carveoutunten();
         carveoutvorne();
