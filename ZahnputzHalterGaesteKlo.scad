@@ -31,7 +31,7 @@ ha=74+t+hf;
 hs=ha-hi-2;
 
 //Welches Teil: "alles", "oberteil" (zum Drucken auf z=0), "sockel"
-teil="oberteil";
+teil="alles";
 
 
 //Innenraum des Zahnputzhalters
