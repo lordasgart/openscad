@@ -23,6 +23,12 @@ ha=74+t;
 //Abstand Innenbox zur Rueckseite
 ar=4;
 
+//Hoehe Sockel = Trennebene, direkt unter der Bodenplatte der Innenbox
+hs=ha-hi-2;
+
+//Welches Teil: "alles", "oberteil" (zum Drucken auf z=0), "sockel"
+teil="oberteil";
+
 
 //Innenraum des Zahnputzhalters
 module innenbox()
@@ -133,4 +139,29 @@ module zahnputzhalter()
     }
 }
 
-zahnputzhalter();
+//U-Rahmen unter der Bodenplatte
+module sockel()
+{
+    intersection()
+    {
+        zahnputzhalter();
+        translate([-1, -1, -1])
+        cube([ba+2, ta+2, hs+1]);
+    }
+}
+
+//alles ab der Bodenplatte, steht flach auf dem Druckbett
+module oberteil()
+{
+    translate([0, 0, -hs])
+    intersection()
+    {
+        zahnputzhalter();
+        translate([-1, -1, hs])
+        cube([ba+2, ta+2, ha]);
+    }
+}
+
+if(teil=="oberteil") oberteil();
+else if(teil=="sockel") sockel();
+else zahnputzhalter();
