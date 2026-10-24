@@ -6,22 +6,26 @@ t=2.4;
 //Rundungsradius (max 2, sonst bleibt oben neben der Innenbox kein Rand)
 rr=1.5;
 
+//Abstand Innenbox zur Rueckseite
+ar=4;
+
+//Hoehe der 45 Grad Schraege unter dem Deckel der hinteren Aussparung
+//(innen und aussen um diese Hoehe hoeher, damit die Aussparung nicht kuerzer wird)
+hf=ar;
+
 //Breite Innenbox
 bi=89;
 //Tiefe Innenbox
 ti=36.5-t;
 //Hoehe Innenbox
-hi=69;
+hi=69+hf;
 
 //Breite Aussenbox
 ba=97;
 //Tiefe Aussenbox
 ta=50;
 //Hoehe Aussenbox
-ha=74+t;
-
-//Abstand Innenbox zur Rueckseite
-ar=4;
+ha=74+t+hf;
 
 //Hoehe Sockel = Trennebene, direkt unter der Bodenplatte der Innenbox
 hs=ha-hi-2;
@@ -101,10 +105,13 @@ module carveouthinten()
 {
     //breite bi+t+t
     //startet 2 unter der oberen platte der aussenbox
-    //und ist ar tief und ha hoch
-    //(+1 nach hinten damit hinten sauber offen)
-    translate([(ba-bi)/2-t, ta-ar, ha-2-ha])
-    cube([bi+t+t, ar+1, ha]);
+    //und ist ar tief und geht unten durch
+    //oben 45 grad schraege nach hinten ansteigend, damit ohne bruecke druckbar
+    //(+1 nach hinten und -1 unten damit sauber offen)
+    translate([(ba-bi)/2-t, 0, 0])
+    rotate([90,0,90])
+    linear_extrude(bi+t+t)
+    polygon([[ta-ar, -1], [ta-ar, ha-2-hf], [ta, ha-2], [ta+1, ha-2], [ta+1, -1]]);
 }
 
 module carveoutunten()
