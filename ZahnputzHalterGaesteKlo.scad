@@ -128,9 +128,13 @@ module carveoutvorne()
     //t von vorne, links und rechts entfernt
     //bis zur vorderseite der innenbox bleiben 2 wand
     //oben bleiben 2 zur aussenbox
+    //oben 45 grad schraege nach vorne ansteigend, damit ohne bruecke druckbar
     //(-1 unten damit es in den carveoutunten uebergeht)
-    translate([t, t, -1])
-    cube([ba-t-t, ta-ar-ti-t-2-t, ha-2+1]);
+    d=ta-ar-ti-t-2-t;
+    translate([t, 0, 0])
+    rotate([90,0,90])
+    linear_extrude(ba-t-t)
+    polygon([[t, -1], [t, ha-2], [t+d, ha-2-d], [t+d, -1]]);
 }
 
 module zahnputzhalter()
