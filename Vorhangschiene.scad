@@ -17,6 +17,16 @@ uk=2;
 //Staerke der Lippe vor dem Gleiterkanal
 sl=2;
 
+//Wandstaerke um die Materialaussparung links
+wm=2;
+
+//Hohlraum links neben dem Gleiterkanal, durchgehend ueber die ganze Laenge, spart Material
+module materialaussparung()
+{
+    translate([wm,wm,0])
+    cube([b-ar-bs-uk-2*wm,t-2*wm,l]);
+}
+
 //Aussparung fuer die Gleiter: Schlitz vorne, breiterer Kanal dahinter
 module gleiterkanal()
 {
@@ -31,4 +41,5 @@ difference()
 {
     cube([b,t,l]);
     gleiterkanal();
+    materialaussparung();
 }
