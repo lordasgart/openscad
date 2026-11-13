@@ -20,7 +20,7 @@ ts=2;
 //Breite Stopper (mittig links/rechts)
 bst=20;
 
-$fn=128;
+$fn=16;
 
 //Stopper unter dem Boden, greift in die Kerbe
 translate([-bst/2,-d/2+as,-ts])
@@ -48,9 +48,9 @@ module keil(dk,o) {
 //Unten flach abgeschnitten, damit nur die obere Kante rund ist und z=0 bleibt.
 mirror([0,1,0])
 intersection() {
-    cylinder(d=d+1,h=2*hv);
+    cylinder(d=2*d,h=2*hv);
     minkowski() {
         keil(d-2*r,r);
-        sphere(r=r,$fn=32);
+        sphere(r=r);
     }
 }
