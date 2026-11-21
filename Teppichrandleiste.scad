@@ -26,26 +26,26 @@ druck=false;
 /* [Teppich] */
 
 //Dicke des Teppichs
-h_teppich=10;
+h_teppich=3;
 //Um so viel wird der Teppich im Schlitz zusammengedrueckt
-klemmung=1.5;
+klemmung=0.5;
 //Wie tief der Teppich in den Schlitz gesteckt wird
 tiefe_schlitz=15;
 
 /* [Profil] */
 
 //Dicke der Zunge unter dem Teppich an der Rueckwand (laeuft zur Spitze hin duenn aus)
-d_zunge=1.5;
+d_zunge=1.2;
 //Materialstaerke der Lippe ueber dem Teppich an der Rueckwand
-d_oben=2.5;
+d_oben=2;
 //Dicke der Rueckwand des Schlitzes
 wand=3;
 //Laenge der Rampe auf dem Boden (laenger = flacher, weniger Stolpergefahr)
-l_rampe=30;
+l_rampe=20;
 //Dicke der auslaufenden Kanten an Lippe, Zunge und Rampe (fuer den Drucker nicht zu duenn)
-kante=0.8;
+kante=0.6;
 //Rundung der Innenecken im Schlitz (0 = aus)
-r_innen=1;
+r_innen=0.5;
 
 /* [Widerhaken im Schlitz] */
 
@@ -54,7 +54,7 @@ haken_oben=true;
 //Widerhaken auf der Oberseite der Zunge
 haken_unten=true;
 //Hoehe der Widerhaken
-h_haken=1;
+h_haken=0.6;
 //Anzahl Widerhaken je Seite
 n_haken=4;
 
