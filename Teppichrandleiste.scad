@@ -17,11 +17,16 @@
 
 /* [Allgemein] */
 
-//Laenge der Schiene (beim Drucken auf der Stirnseite = Druckhoehe)
+//Laenge der Schiene (seitlich: bis zur Druckbettlaenge, Stirnseite: bis zur Druckhoehe)
 laenge=150;
 
-//Ansicht: false = Einbaulage, true = auf die Stirnseite gedreht zum Drucken
-druck=false;
+//Ausrichtung:
+//einbau     = so wie die Schiene auf dem Boden liegt (nur zum Ansehen)
+//seitlich   = auf die Seite gekippt, Schlitz nach unten, Schiene liegt der Laenge nach
+//             auf dem Bett -> nur ~38mm Druckhoehe, schnell. Brim verwenden, da nur
+//             die duennen Spitzen von Zunge und Lippe auf dem Bett stehen
+//stirnseite = auf die Stirnseite gestellt, Profil liegt auf dem Bett -> langsam
+ausrichtung="einbau"; // [einbau, seitlich, stirnseite]
 
 /* [Teppich] */
 
@@ -97,7 +102,8 @@ module profil_grund()
 }
 
 //Saegezaehne: flach ansteigend in Steckrichtung (+x), steile Flanke zur Rueckwand hin,
-//so rutscht der Teppich leicht hinein, aber schwer wieder heraus
+//so rutscht der Teppich leicht hinein, aber schwer wieder heraus.
+//Die steile Flanke hat 45 Grad statt senkrecht, damit sie seitlich ohne Stuetzen druckbar ist
 module haken()
 {
     bk=(tiefe_schlitz-r_innen)/n_haken;
@@ -106,9 +112,9 @@ module haken()
         x0=-tiefe_schlitz+i*bk;
         x1=x0+bk;
         if (haken_oben)
-            polygon([[x0, z_lippe], [x1, z_lippe], [x1, z_lippe-h_haken]]);
+            polygon([[x0, z_lippe], [x1, z_lippe], [x1-h_haken, z_lippe-h_haken]]);
         if (haken_unten)
-            polygon([[x0, z_zunge(x0)], [x1, z_zunge(x1)], [x1, z_zunge(x1)+h_haken]]);
+            polygon([[x0, z_zunge(x0)], [x1, z_zunge(x1)], [x1-h_haken, z_zunge(x1-h_haken)+h_haken]]);
     }
 }
 
@@ -129,7 +135,12 @@ module schiene()
     rotate([90,0,0]) translate([0,0,-laenge]) linear_extrude(height=laenge) profil();
 }
 
-if (druck)
+if (ausrichtung=="seitlich")
+    //Um die Laengsachse kippen: Schlitzoeffnung (x=-tiefe_schlitz) nach unten aufs Bett.
+    //Lippenoberseite steht dann ~5 Grad aus der Senkrechten, das Schlitzende ist eine
+    //kurze Bruecke, die Widerhaken haben ihre steile Flanke oben -> keine Stuetzen noetig
+    translate([0,0,tiefe_schlitz]) rotate([0,-90,0]) schiene();
+else if (ausrichtung=="stirnseite")
     //Auf die Stirnseite stellen: Profil liegt auf dem Druckbett, keine Ueberhaenge
     rotate([-90,0,0]) translate([0,-laenge,0]) schiene();
 else
